@@ -1,0 +1,161 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:theme="@style/custom_toolbar"/>
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/brandSpinner"
+        android:layout_alignBottom="@+id/modelEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:entries="@array/car_brands"
+        android:layout_alignTop="@+id/modelEditText"
+        android:layout_marginLeft="15dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"/>
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/modelEditText"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Rok produkcji"
+        android:id="@+id/textView"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/brandSpinner"
+        android:layout_alignLeft="@+id/brandSpinner"
+        android:layout_alignStart="@+id/brandSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Spalanie"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignLeft="@+id/modelEditText"
+        android:layout_alignStart="@+id/modelEditText" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/consumptionEditText"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/textView" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/yearSpinner"
+        android:layout_alignTop="@+id/consumptionEditText"
+        android:layout_alignBottom="@+id/consumptionEditText"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        style="@style/Widget.AppCompat.Spinner.Underlined"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Marka"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/brandSpinner"
+        android:layout_alignLeft="@+id/brandSpinner"
+        android:layout_alignStart="@+id/brandSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Model"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/brandSpinner"
+        android:layout_alignLeft="@+id/modelEditText"
+        android:layout_alignStart="@+id/modelEditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Rodzaj paliwa"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/yearSpinner"
+        android:layout_alignLeft="@+id/yearSpinner"
+        android:layout_alignStart="@+id/yearSpinner"
+        android:layout_marginTop="40dp" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:id="@+id/petrolTypesSpinner"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:entries="@array/petrol_types"
+        style="@style/Widget.AppCompat.Spinner.Underlined" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Ubezpieczenie ważne do"
+        android:id="@+id/textView4"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/petrolTypesSpinner"
+        android:layout_alignLeft="@+id/petrolTypesSpinner"
+        android:layout_alignStart="@+id/petrolTypesSpinner" />
+
+    <EditText
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/insuranceEditText"
+        android:focusable="false"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/petrolTypesSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Przegląd ważny do"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/insuranceEditText"
+        android:layout_alignLeft="@+id/petrolTypesSpinner"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/serviceEditText"
+        android:selectAllOnFocus="true"
+        android:focusable="false"
+        android:layout_below="@+id/textView12"
+        android:layout_alignLeft="@+id/petrolTypesSpinner" />
+
+</RelativeLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:theme="@style/custom_toolbar"/>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/relativeLayout" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:src="@drawable/ic_navigation_white_24dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/navigationBarColor"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="--.--"
+            android:id="@+id/distanceTextView"
+            android:textColor="@color/textColorPrimary"
+            android:gravity="center"
+            android:layout_below="@+id/textView25"
+            android:layout_alignLeft="@+id/textView25"
+            android:layout_alignStart="@+id/textView25"
+            android:layout_alignRight="@+id/textView25"
+            android:layout_alignEnd="@+id/textView25"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="--:--"
+            android:id="@+id/timeTextView"
+            android:textColor="@color/textColorPrimary"
+            android:gravity="center"
+            android:layout_below="@+id/textView27"
+            android:layout_alignLeft="@+id/textView27"
+            android:layout_alignStart="@+id/textView27"
+            android:layout_alignRight="@+id/textView27"
+            android:layout_alignEnd="@+id/textView27"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="DYSTANS DO POKONANIA"
+            android:id="@+id/textView25"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="GODZINA PRZYJAZDU"
+            android:id="@+id/textView27"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

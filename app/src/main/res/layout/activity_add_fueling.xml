@@ -1,0 +1,106 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:theme="@style/custom_toolbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp">
+
+        <EditText
+            android:id="@+id/priceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cena paliwa (zł)"
+            android:inputType="numberDecimal" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_litres"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/input_price"
+        android:layout_alignLeft="@+id/input_price"
+        android:layout_alignStart="@+id/input_price">
+
+        <EditText
+            android:id="@+id/litresEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ilość paliwa (l)"
+            android:inputType="numberDecimal"
+            android:layout_below="@+id/input_price"
+            android:layout_alignLeft="@+id/input_price"
+            android:layout_alignStart="@+id/input_price"
+            android:layout_marginTop="40dp"
+            android:layout_alignRight="@+id/input_price"
+            android:layout_alignEnd="@+id/input_price" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_lcost"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/input_litres"
+        android:layout_alignLeft="@+id/input_litres"
+        android:layout_alignStart="@+id/input_litres">
+
+        <EditText
+            android:id="@+id/costEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Koszt paliwa (zł)"
+            android:inputType="numberDecimal"
+            android:layout_below="@+id/input_price"
+            android:layout_alignLeft="@+id/input_price"
+            android:layout_alignStart="@+id/input_price"
+            android:layout_marginTop="40dp"
+            android:layout_alignRight="@+id/input_price"
+            android:layout_alignEnd="@+id/input_price" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Data tankowania"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/input_lcost"
+        android:layout_alignLeft="@+id/input_lcost"
+        android:layout_alignStart="@+id/input_lcost"
+        android:layout_marginTop="40dp"
+        android:textSize="12dp"/>
+
+    <EditText
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateEditText"
+        android:focusable="false"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+</RelativeLayout>
