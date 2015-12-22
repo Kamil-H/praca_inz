@@ -108,7 +108,7 @@ public class PetrolFragment extends Fragment {
             for (int j = 0; j < fMs.size()+1; j++) {
                 if(j != 0){
                     FuelingModel fuelingModel = fMs.get(j-1);
-                    ExpandableItemChild expandableItemChild = new ExpandableItemChild(Utilities.replace(fuelingModel.getDate()), String.valueOf(fuelingModel.getCost()) +" zł",
+                    ExpandableItemChild expandableItemChild = new ExpandableItemChild(fuelingModel.getDate(), String.valueOf(fuelingModel.getCost()) +" zł",
                             String.valueOf(fuelingModel.getLitres()) + " l", String.valueOf(fuelingModel.getPrice()) + " zł/l");
                     childObjects.add(expandableItemChild);
                 }

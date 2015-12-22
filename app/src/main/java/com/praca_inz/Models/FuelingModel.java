@@ -1,5 +1,7 @@
 package com.praca_inz.Models;
 
+import com.praca_inz.DateAndTime;
+
 /**
  * Created by KamilH on 2015-10-18.
  */
@@ -37,14 +39,14 @@ public class FuelingModel {
     }
 
     public FuelingModel(float price, float litres, float cost, String date){
-        String dateArr[] = date.split(" ");
+        int dateArr[] = DateAndTime.getDMYfromString(date);
 
         this.price = price;
         this.litres = litres;
         this.cost = cost;
-        this.day = Integer.valueOf(dateArr[0]);
-        this.month = Integer.valueOf(dateArr[1]);
-        this.year = Integer.valueOf(dateArr[2]);
+        this.day = dateArr[0];
+        this.month = dateArr[1];
+        this.year = dateArr[2];
         this.date = date;
         this.monthYear = Integer.parseInt(month +""+ year);
     }
@@ -65,11 +67,11 @@ public class FuelingModel {
     }
 
     public void setDate(String date) {
-        String dateArr[] = date.split(" ");
+        int dateArr[] = DateAndTime.getDMYfromString(date);
         this.date = date;
-        this.day = Integer.valueOf(dateArr[0]);
-        this.month = Integer.valueOf(dateArr[1]);
-        this.year = Integer.valueOf(dateArr[2]);
+        this.day = dateArr[0];
+        this.month = dateArr[1];
+        this.year = dateArr[2];
         this.monthYear = Integer.parseInt(month + "" + year);
     }
 

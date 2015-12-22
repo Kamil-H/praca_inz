@@ -25,13 +25,13 @@ import com.praca_inz.Activities.MapActivity;
 import com.praca_inz.Adapters.RecyclerItemClickListener;
 import com.praca_inz.Adapters.RecyclerViewAdapter;
 import com.praca_inz.Database.RoutesDB;
+import com.praca_inz.DateAndTime;
 import com.praca_inz.Models.RoutesModel;
 import com.praca_inz.Interfaces.ValuesChangeListener;
 import com.praca_inz.Interfaces.FinishRecordingListener;
 import com.praca_inz.R;
 import com.praca_inz.TrackRoute;
 import com.praca_inz.UnitConversions;
-import com.praca_inz.Utilities;
 
 import java.util.List;
 
@@ -196,7 +196,7 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
             long millis = System.currentTimeMillis() - tStart;
             int seconds = (int) (millis / 1000);
 
-            timeTextView.setText(String.format(Utilities.timeConversion(seconds)));
+            timeTextView.setText(String.format(DateAndTime.timeConversion(seconds)));
             int mInterval = 1000;
             mHandler.postDelayed(mStatusChecker, mInterval);
         }

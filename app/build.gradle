@@ -28,6 +28,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'com.google.android.gms:play-services:+'
     compile 'org.immutables:gson:2.1.0'
+    compile 'joda-time:joda-time:2.9.1'
     compile files ('libs/beyondar-v0.9.3.jar')
     compile files('beyondar-googlemap-plugin-v0.9.0.jar')
 }

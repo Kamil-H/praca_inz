@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.praca_inz.DateAndTime;
 import com.praca_inz.Models.RoutesModel;
 import com.praca_inz.R;
 import com.praca_inz.Utilities;
@@ -50,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RowViewHolder> {
 
         rowViewHolder.date.setText(items.getDate());
         rowViewHolder.distance.setText(String.valueOf(distance + " km"));
-        rowViewHolder.time.setText(Utilities.timeConversion(items.getTime()));
+        rowViewHolder.time.setText(DateAndTime.timeConversion(items.getTime()));
     }
 }
 

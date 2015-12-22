@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.praca_inz.Database.RoutesDB;
+import com.praca_inz.DateAndTime;
 import com.praca_inz.Models.RoutesModel;
 import com.praca_inz.Database.RoutesPointsDB;
 import com.praca_inz.Models.RoutesPointsModel;
@@ -108,7 +109,7 @@ public class MapActivity extends AppCompatActivity {
         TextView costTextView = (TextView) findViewById(R.id.costTextView);
 
         distanceTextView.setText(rM.getDistance() + " km");
-        timeTextView.setText(Utilities.timeConversion(rM.getTime()));
+        timeTextView.setText(DateAndTime.timeConversion(rM.getTime()));
         avgSpeedTextView.setText(rM.getAvgSpeed() + " km/h");
         maxSpeedTextView.setText(rM.getMaxSpeed() + " km/h");
         costTextView.setText(rM.getCost() + " zł");

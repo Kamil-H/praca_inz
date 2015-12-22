@@ -126,7 +126,7 @@ public class TrackRoute {
     public void stopRecording(double fuelCost){
         if(isRecording){
             RoutesModel routesModel = new RoutesModel(Utilities.roundOff(this.distance * UnitConversions.M_TO_KM), this.time, getTripCost(fuelCost), Utilities.roundOff(this.avgSpeed),
-                    Utilities.roundOff(this.maxSpeed), Utilities.getCurrentDate());
+                    Utilities.roundOff(this.maxSpeed), DateAndTime.getCurrentTime());
             updateRoutesDB(routesModel);
         }
         removeGPSupdates();

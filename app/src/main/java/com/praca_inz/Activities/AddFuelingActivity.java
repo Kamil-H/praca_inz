@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,19 +12,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.praca_inz.DateAndTime;
 import com.praca_inz.Fragments.DatePickerFragment;
 import com.praca_inz.Database.FuelingDB;
 import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.MainActivity;
 import com.praca_inz.R;
-import com.praca_inz.Utilities;
-
-import java.util.Calendar;
-import java.util.List;
 
 public class AddFuelingActivity extends AppCompatActivity {
     EditText dateEditText, costEditText, litresEditText, priceEditText;
-    private static String[] monthNames = {"styczeń" ,"luty" ,"marzec" ,"kwiecień" ,"maj" ,"czerwiec" ,"lipiec" ,"sierpień" ,"wrzesień" ,"październik" ,"listopad", "grudzień"};
     private float cost, litres, price;
     private String date;
 
@@ -47,7 +42,7 @@ public class AddFuelingActivity extends AppCompatActivity {
         litresEditText = (EditText) findViewById(R.id.litresEditText);
         priceEditText = (EditText) findViewById(R.id.priceEditText);
 
-        dateEditText.setOnClickListener(new View.OnClickListener(){
+        dateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerFragment newFragment = new DatePickerFragment() {
@@ -60,8 +55,7 @@ public class AddFuelingActivity extends AppCompatActivity {
             }
         });
 
-        Calendar c = Calendar.getInstance();
-        dateEditText.setText(c.get(Calendar.DAY_OF_MONTH) + " " + monthNames[c.get(Calendar.MONTH)] + " " + c.get(Calendar.YEAR));
+        dateEditText.setText(DateAndTime.getCurrentDate());
     }
 
     @Override
@@ -71,8 +65,7 @@ public class AddFuelingActivity extends AppCompatActivity {
     }
 
     public void onComplete(int year, int month, int day) {
-        String monthName = monthNames[month];
-        String dateToDisplay = Integer.toString(day) + " " + monthName + " " + Integer.toString(year);
+        String dateToDisplay = DateAndTime.getNewDate(day, month, year);
         dateEditText.setText(dateToDisplay);
     }
 
@@ -81,7 +74,7 @@ public class AddFuelingActivity extends AppCompatActivity {
         boolean costBool = TextUtils.isEmpty(costEditText.getText().toString());
         boolean litresBool = TextUtils.isEmpty(litresEditText.getText().toString());
 
-        date = Utilities.dateTextToNumber(dateEditText.getText().toString());
+        date = dateEditText.getText().toString();
 
         if (!priceBool && !costBool && !litresBool){
             price = Float.valueOf(priceEditText.getText().toString());
@@ -94,19 +87,19 @@ public class AddFuelingActivity extends AppCompatActivity {
                     cost = Float.valueOf(costEditText.getText().toString());
                     litres = Float.valueOf(litresEditText.getText().toString());
                     price = cost / litres;
-                    saveToDB();
+                    saveAndGoBack();
                 }
                 else if (!priceBool && costBool && !litresBool){
                     price = Float.valueOf(priceEditText.getText().toString());
                     litres = Float.valueOf(litresEditText.getText().toString());
                     cost = price * litres;
-                    saveToDB();
+                    saveAndGoBack();
                 }
                 else if (!priceBool && !costBool && litresBool){
                     price = Float.valueOf(priceEditText.getText().toString());
                     cost = Float.valueOf(costEditText.getText().toString());
                     litres = cost / price;
-                    saveToDB();
+                    saveAndGoBack();
                 }
                 else Toast.makeText(getApplicationContext(), "Proszę wypełnić 2 z 3 pól", Toast.LENGTH_SHORT).show();
             }
@@ -114,18 +107,15 @@ public class AddFuelingActivity extends AppCompatActivity {
         //Log.v("FUELING", val);
     }
 
+    private void saveAndGoBack(){
+        saveToDB();
+        goBack();
+    }
+
     private void saveToDB(){
         FuelingDB fDB = new FuelingDB(this);
         FuelingModel fuelingModel = new FuelingModel(price, litres, cost, date);
         fDB.addFueling(fuelingModel);
-
-        List<FuelingModel> fuelingModels = fDB.getAllFuelings();
-
-        for (FuelingModel fM : fuelingModels) {
-            String log = fM.toString();
-            Log.d("Fuelings: : ", log);
-        }
-        goBack();
     }
 
     private void goBack(){

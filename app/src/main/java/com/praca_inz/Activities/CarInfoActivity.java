@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.praca_inz.DateAndTime;
 import com.praca_inz.Fragments.DatePickerFragment;
 import com.praca_inz.MainActivity;
 import com.praca_inz.R;
@@ -34,7 +35,6 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
     private float consumption;
     private int year, petrolType;
 
-    private static String[] monthNames = {"styczeń" ,"luty" ,"marzec" ,"kwiecień" ,"maj" ,"czerwiec" ,"lipiec" ,"sierpień" ,"wrzesień" ,"październik" ,"listopad", "grudzień"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,15 +93,14 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
             modelEditText.setText(preferences.getString("model", ""));
             yearSpinner.setSelection(thisYear - preferences.getInt("year", 0));
             consumptionEditText.setText(String.valueOf(preferences.getFloat("consumption", 0)));
-            insuranceEditText.setText(Utilities.dateNumberToText(preferences.getString("insuranceDate", "")));
+            insuranceEditText.setText(preferences.getString("insuranceDate", ""));
             petrolTypesSpinner.setSelection(preferences.getInt("petrolType", 0));
-            serviceEditText.setText(Utilities.dateNumberToText(preferences.getString("serviceDate", "")));
+            serviceEditText.setText(preferences.getString("serviceDate", ""));
         }
     }
 
     public void onComplete(int year, int month, int day, int cur) {
-        String monthName = monthNames[month];
-        String dateToDisplay = Integer.toString(day) + " " + monthName + " " + Integer.toString(year);
+        String dateToDisplay = DateAndTime.getNewDate(day, month, year);
 
         if (cur == insuranceDateTAG) {
             insuranceEditText.setText(dateToDisplay);
@@ -125,14 +124,14 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
             insuranceEditText.setError("Proszę podać datę końca ubezpieczenia!");
         }
         else {
-            insuranceDate = Utilities.dateTextToNumber(insuranceEditText.getText().toString());
+            insuranceDate = insuranceEditText.getText().toString();
         }
 
         if (TextUtils.isEmpty(serviceEditText.getText().toString())){
             serviceEditText.setError("Proszę podać datę końca ważności przeglądu!");
         }
         else {
-            serviceDate = Utilities.dateTextToNumber(serviceEditText.getText().toString());
+            serviceDate = serviceEditText.getText().toString();
         }
 
         brand = brandsSpinner.getSelectedItem().toString();

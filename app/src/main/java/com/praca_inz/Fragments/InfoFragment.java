@@ -3,7 +3,6 @@ package com.praca_inz.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,11 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.praca_inz.Activities.CarInfoActivity;
+import com.praca_inz.DateAndTime;
 import com.praca_inz.R;
-import com.praca_inz.Utilities;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * Created by KamilH on 2015-10-13.
@@ -27,7 +23,6 @@ public class InfoFragment extends Fragment {
     FloatingActionButton fab;
 
     private String brand, model, insuranceDate, serviceDate;
-    private static String[] monthNames = {"styczeń" ,"luty" ,"marzec" ,"kwiecień" ,"maj" ,"czerwiec" ,"lipiec" ,"sierpień" ,"wrzesień" ,"październik" ,"listopad", "grudzień"};
     private float consumption;
     private int year, petrolType;
 
@@ -58,41 +53,6 @@ public class InfoFragment extends Fragment {
         return view;
     }
 
-    // OBLICZANIE POZOSTAŁYCH DNI DO ITD.
-    private int getDaysToDate(int date[]){
-        // wyznaczanie, który to dzień roku (ten dzień wczytany)
-        GregorianCalendar gc = new GregorianCalendar();
-        gc.set(Calendar.DAY_OF_MONTH, date[0]);
-        gc.set(Calendar.MONTH, date[1]-1);
-        gc.set(Calendar.YEAR, date[2]);
-        int numberofDaysPassed = gc.get(Calendar.DAY_OF_YEAR);
-
-        // dzisiaj, który dzień roku
-        Calendar calendar = Calendar.getInstance();
-        int dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
-        int actualYear = Calendar.getInstance().get(Calendar.YEAR);
-
-        int daysToDate;
-
-        if(actualYear < date[2]){
-            daysToDate = 365 - dayOfYear + numberofDaysPassed;
-        }
-        else {
-            daysToDate = numberofDaysPassed - dayOfYear;
-        }
-        return daysToDate;
-    }
-
-    private int[] parseDate(String date){
-        String dateArr[] = date.split(" ");
-        int dateInt[] = new int[3];
-
-        for(int i = 0; i<dateArr.length; i++)
-            dateInt[i] = Integer.valueOf(dateArr[i]);
-
-        return dateInt;
-    }
-
     private void readData(){
         SharedPreferences preferences = getActivity().getSharedPreferences("car_info_preferences", Context.MODE_PRIVATE);
         int count = preferences.getAll().size();
@@ -118,19 +78,21 @@ public class InfoFragment extends Fragment {
         insuranceTextView = (TextView) view.findViewById(R.id.insuranceTextView);
         serviceTextView = (TextView) view.findViewById(R.id.serviceTextView);
 
-        brandAndModelTextView.setText(brand + " " + model);
+        brandAndModelTextView.setText(String.format("%s %s", brand, model));
         yearTextView.setText(String.valueOf(year));
         petrolTypeTextView.setText(petrolTypes[petrolType]);
         consumptionTextView.setText(String.valueOf(consumption));
 
-        int daysToInsurance = getDaysToDate(parseDate(insuranceDate));
+        int daysToInsurance = DateAndTime.getDaysBetween(insuranceDate);
         if(daysToInsurance >= 0)
-            insuranceTextView.setText(Utilities.dateNumberToText(insuranceDate) + " " + "(" + daysToInsurance + " dni do końca)");
-        else insuranceTextView.setText(Utilities.dateNumberToText(insuranceDate) + " " + "(" + Math.abs(daysToInsurance) + " dni temu minął termin!)");
+            insuranceTextView.setText(String.format("%s (%d dni do końca)", insuranceDate, daysToInsurance));
+        else
+            insuranceTextView.setText(String.format("%s (%d dni temu minął termin)", insuranceDate, Math.abs(daysToInsurance)));
 
-        int daysToService = getDaysToDate(parseDate(serviceDate));
+        int daysToService = DateAndTime.getDaysBetween(serviceDate);
         if(daysToService >= 0)
-            serviceTextView.setText(Utilities.dateNumberToText(serviceDate) + " " + "(" + daysToService + " dni do końca)");
-        else serviceTextView.setText(Utilities.dateNumberToText(serviceDate) + " " + "(" + Math.abs(daysToService) + " dni temu minął termin!)");
+            serviceTextView.setText(String.format("%s (%d dni do końca)", serviceDate, daysToService));
+        else
+            serviceTextView.setText(String.format("%s (%d dni temu minął termin)", serviceDate, Math.abs(daysToService)));
     }
 }
