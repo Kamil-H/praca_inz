@@ -1,6 +1,4 @@
-package com.praca_inz.ModelsAndDB.MapModels;
-
-import java.io.Serializable;
+package com.praca_inz.Models.MapModels;
 
 /**
  * Created by KamilH on 2015-11-02.

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.beyondar.android.world.GeoObject;
 import com.beyondar.android.world.World;
-import com.praca_inz.ModelsAndDB.MapModels.Step;
+import com.praca_inz.Models.MapModels.Step;
 import java.util.List;
 
 /**

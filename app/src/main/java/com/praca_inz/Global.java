@@ -2,7 +2,7 @@ package com.praca_inz;
 
 import android.app.Application;
 
-import com.praca_inz.ModelsAndDB.MapModels.Route;
+import com.praca_inz.Models.MapModels.Route;
 
 /**
  * Created by KamilH on 2015-11-04.

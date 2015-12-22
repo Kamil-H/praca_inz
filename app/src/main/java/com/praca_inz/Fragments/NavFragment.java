@@ -25,15 +25,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.praca_inz.Activities.NavigationActivity;
 import com.praca_inz.Activities.PreviewMapActivity;
 import com.praca_inz.Adapters.RecyclerItemClickListener;
 import com.praca_inz.Adapters.RecyclerViewAdapterDirections;
 import com.praca_inz.InternetClasses.Directions;
 import com.praca_inz.InternetClasses.Geocoding;
 import com.praca_inz.Global;
-import com.praca_inz.ModelsAndDB.MapModels.Route;
-import com.praca_inz.ModelsAndDB.MapModels.Step;
+import com.praca_inz.Models.MapModels.Route;
+import com.praca_inz.Models.MapModels.Step;
 import com.praca_inz.R;
 
 import java.util.ArrayList;

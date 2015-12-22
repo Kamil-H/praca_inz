@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,12 +24,12 @@ import android.widget.Toast;
 import com.praca_inz.Activities.MapActivity;
 import com.praca_inz.Adapters.RecyclerItemClickListener;
 import com.praca_inz.Adapters.RecyclerViewAdapter;
-import com.praca_inz.CalculateTrack;
-import com.praca_inz.ModelsAndDB.RoutesDB;
-import com.praca_inz.ModelsAndDB.RoutesModel;
-import com.praca_inz.ModelsAndDB.RoutesPointsDB;
-import com.praca_inz.ModelsAndDB.RoutesPointsModel;
+import com.praca_inz.Database.RoutesDB;
+import com.praca_inz.Models.RoutesModel;
+import com.praca_inz.Interfaces.ValuesChangeListener;
+import com.praca_inz.Interfaces.FinishRecordingListener;
 import com.praca_inz.R;
+import com.praca_inz.TrackRoute;
 import com.praca_inz.UnitConversions;
 import com.praca_inz.Utilities;
 
@@ -40,21 +38,18 @@ import java.util.List;
 /**
  * Created by KamilH on 2015-10-14.
  */
-public class RoutesFragment extends Fragment {
+
+public class RoutesFragment extends Fragment implements ValuesChangeListener, FinishRecordingListener {
     private View view;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
     private Button startButton;
     private TextView distanceTextView, timeTextView, avgSpeedTextView, maxSpeedTextView;
-    private int START = 0, STOP = 1, startStop = 0;
     private long tStart = 0;
-    private Handler mHandler;
-    private int iterator = 0;
-    private Location lastLocation;
-    private double distance = 0, time = 0, avgSpeed = 0, maxSpeed = 0, consumption = 0;
+    private float consumption = 0;
+    private boolean isFirstLocation = true, isStart = true;
     private RecyclerView recyclerView;
     private SharedPreferences carInfoPreferences, petrolPreferences;
-    private long routeID;
+    private TrackRoute trackRoute;
+    private Handler mHandler;
 
     public RoutesFragment() {
         // Required empty public constructor
@@ -89,29 +84,31 @@ public class RoutesFragment extends Fragment {
 
         displayCards();
 
+        trackRoute = new TrackRoute(getActivity());
+        trackRoute.addValuesChangeListener(this);
+        trackRoute.addFinishRecordingListeners(this);
+
         startButton = (Button) view.findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (startStop == START) {
-                    if(isGPSenabled()){
-                        getTrackID();
-                        getLocation();
+                if (isStart) {
+                    if (isGPSenabled()) {
+                        trackRoute.startRecording();
                         Toast.makeText(getActivity(), "Pomiar rozpocznie się w momencie, gdy GPS ustali pozycję", Toast.LENGTH_SHORT).show();
 
                         startButton.setText("STOP");
-                        startStop = STOP;
+                        isStart = false;
                     }
                 } else {
-                    locationManager.removeUpdates(locationListener);
                     stopRepeatingTask();
 
-                    if(iterator > 0){
+                    if (trackRoute.isRecording()) {
                         showCostDialog();
                     }
 
                     startButton.setText("START");
-                    startStop = START;
+                    isStart = true;
                 }
             }
         });
@@ -125,61 +122,15 @@ public class RoutesFragment extends Fragment {
         return view;
     }
 
-    private void getTrackID(){
-        RoutesDB rDB = new RoutesDB(getActivity());
-        this.routeID = rDB.getRowCount() + 1;
-    }
-
-    private void displayRPM(){
-        RoutesPointsDB rPDB = new RoutesPointsDB(getActivity());
-        List<RoutesPointsModel> routesPointsModel = rPDB.getRoute(2);
-
-        for (RoutesPointsModel rPM : routesPointsModel) {
-            String log = rPM.toString();
-            Log.d("POINTS: : ", log);
-        }
-    }
-
-    private void display(List<RoutesModel> routesModels){
-        for (RoutesModel fM : routesModels) {
-            String log = fM.toString();
-            Log.d("Fuelings: : ", log);
-        }
-    }
-
-    private void getCost(double consum){
-        double price = petrolPreferences.getFloat(String.valueOf(carInfoPreferences.getInt("petrol_type", 0)), 0);
-        double distanceKM = this.distance * UnitConversions.M_TO_KM;
-
-        //Toast.makeText(getActivity(), "PRICE: "+ String.valueOf(price) + "CONS: " + String.valueOf(consum) + "DIST: " + String.valueOf(distanceKM), Toast.LENGTH_LONG).show();
-        if (consum != 0 && distance != 0) {
-            updateRoutesDB(price * (distanceKM / 100) * consum);
+    private void getFuelCost(double consum){
+        int petrolType = carInfoPreferences.getInt("petrolType", 0);
+        double price = petrolPreferences.getFloat(String.valueOf(petrolType), 0);
+        if (consum != 0) {
+            trackRoute.stopRecording(price * consum);
+            Log.w("TAG", String.format("petrolType: %d, price: %f, consumption: %f", petrolType, price, consum));
         } else {
-            updateRoutesDB(0);
+            trackRoute.stopRecording(0);
         }
-    }
-
-    private void updateRoutesPointsDB(double lat, double lon, double time, double accuracy, double speed){
-        RoutesPointsDB rPDB = new RoutesPointsDB(getActivity());
-        rPDB.addPoint(new RoutesPointsModel((int)this.routeID, lat, lon, time, accuracy, speed));
-    }
-
-    private void updateRoutesDB(double cost){
-        RoutesDB rDB = new RoutesDB(getActivity());
-        String date = Utilities.getCurrentDate();
-        rDB.addRoute(new RoutesModel(Utilities.roundOff(this.distance * UnitConversions.M_TO_KM), this.time, Utilities.roundOff(cost), Utilities.roundOff(this.avgSpeed),
-                Utilities.roundOff(this.maxSpeed), date));
-
-        resetValues();
-        displayCards();
-    }
-
-    private void resetValues(){
-        this.iterator = 0;
-        this.distance = 0;
-        this.time = 0;
-        this.avgSpeed = 0;
-        this.maxSpeed = 0;
     }
 
     private void displayCards(){
@@ -190,67 +141,14 @@ public class RoutesFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private void getLocation() {
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                double accuracy = location.getAccuracy();
-                double speed = location.getSpeed() * UnitConversions.MS_TO_KMH;
-                long tEnd = System.currentTimeMillis();
-                double elapsedTime = getElapsedTime(tStart, tEnd);
-
-                if(iterator > 0){
-                    CalculateTrack calculateTrack = new CalculateTrack(lastLocation, location, elapsedTime, distance);
-                    saveData(calculateTrack.getAvgSpeed(), Double.valueOf(speed), calculateTrack.getDistance(), elapsedTime);
-                    lastLocation = location;
-                }
-                else {
-                    lastLocation = location;
-                    tStart = System.currentTimeMillis();
-                    startRepeatingTask();
-                }
-                iterator++;
-
-                if (speed > 0)
-                    updateRoutesPointsDB(location.getLatitude(), location.getLongitude(), elapsedTime, accuracy, speed);
-            }
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-            public void onProviderEnabled(String provider) {
-            }
-            public void onProviderDisabled(String provider) {
-            }
-        };
-
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-    }
-
-    private void saveData(double avgSpeed, double speed, double distance, double time){
-        if(speed >= this.maxSpeed)
-            this.maxSpeed = speed;
-        this.avgSpeed = avgSpeed;
-        this.distance = distance;
-        this.time = time;
-
-        fillForms();
-    }
-
-    private void fillForms(){
-        avgSpeedTextView.setText(String.valueOf(String.format("%.2f", avgSpeed)));
-        maxSpeedTextView.setText(String.valueOf(String.format("%.2f", maxSpeed)));
-        distanceTextView.setText(String.valueOf(String.format("%.2f", distance * UnitConversions.M_TO_KM)));
-    }
-
-    private double getElapsedTime(long tStart, long tEnd){
-        long tDelta = tEnd - tStart;
-        double elapsedSeconds = tDelta / 1000.0;
-
-        return Math.round(elapsedSeconds);
+    private void fillForms(RoutesModel routesModel){
+        avgSpeedTextView.setText(String.valueOf(String.format("%.2f", routesModel.getAvgSpeed())));
+        maxSpeedTextView.setText(String.valueOf(String.format("%.2f", routesModel.getMaxSpeed())));
+        distanceTextView.setText(String.valueOf(String.format("%.2f", routesModel.getDistance() * UnitConversions.M_TO_KM)));
     }
 
     private boolean isGPSenabled() {
-        locationManager = (LocationManager)this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))  {
             Toast.makeText(getActivity(), "Proszę włączyć GPS.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(
@@ -274,18 +172,18 @@ public class RoutesFragment extends Fragment {
         //dialogBuilder.setMessage("Enter text below");
         dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                getCost(Double.parseDouble(consumptionEditText.getText().toString()));
+                getFuelCost(Double.parseDouble(consumptionEditText.getText().toString()));
             }
         });
         dialogBuilder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                getCost(consumption);
+                getFuelCost(consumption);
             }
         });
         dialogBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                getCost(consumption);
+                getFuelCost(consumption);
             }
         });
         AlertDialog b = dialogBuilder.create();
@@ -304,11 +202,26 @@ public class RoutesFragment extends Fragment {
         }
     };
 
-    void startRepeatingTask() {
+    private void startRepeatingTask() {
         mStatusChecker.run();
     }
 
-    void stopRepeatingTask() {
+    private void stopRepeatingTask() {
         mHandler.removeCallbacks(mStatusChecker);
+    }
+
+    @Override
+    public void valuesChanged(RoutesModel routesModel) {
+        if(isFirstLocation){
+            tStart = System.currentTimeMillis();
+            startRepeatingTask();
+        }
+        isFirstLocation = false;
+        fillForms(routesModel);
+    }
+
+    @Override
+    public void recordingFinished() {
+        displayCards();
     }
 }

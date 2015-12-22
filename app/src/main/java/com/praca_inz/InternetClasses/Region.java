@@ -32,7 +32,7 @@ public class Region extends AsyncTask<Double, Void, String> {
         String line = null;
         if(in != null){
             // przejście do 32 linii na stronie
-            for (int i = 0; i<31; i++){
+            for (int i = 0; i<26; i++){
                 if (in != null) {
                     try {
                         line = in.readLine();

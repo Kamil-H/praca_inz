@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.praca_inz.ModelsAndDB.RoutesModel;
+import com.praca_inz.Models.RoutesModel;
 import com.praca_inz.R;
 import com.praca_inz.Utilities;
 

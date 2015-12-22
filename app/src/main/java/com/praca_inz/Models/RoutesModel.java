@@ -1,4 +1,4 @@
-package com.praca_inz.ModelsAndDB;
+package com.praca_inz.Models;
 
 /**
  * Created by KamilH on 2015-10-23.
@@ -27,6 +27,13 @@ public class RoutesModel {
         this.avgSpeed = avgSpeed;
         this.maxSpeed = maxSpeed;
         this.date = date;
+    }
+
+    public RoutesModel(double distance, double time, double avgSpeed, double maxSpeed){
+        this.distance = distance;
+        this.time = time;
+        this.avgSpeed = avgSpeed;
+        this.maxSpeed = maxSpeed;
     }
 
     public RoutesModel() {};

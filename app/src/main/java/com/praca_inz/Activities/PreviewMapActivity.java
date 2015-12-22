@@ -1,8 +1,6 @@
 package com.praca_inz.Activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.beyondar.android.plugin.googlemap.GoogleMapWorldPlugin;
 import com.beyondar.android.world.World;
@@ -21,18 +18,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.praca_inz.GeneratePOIs;
 import com.praca_inz.Global;
-import com.praca_inz.ModelsAndDB.MapModels.Leg;
-import com.praca_inz.ModelsAndDB.MapModels.Route;
-import com.praca_inz.ModelsAndDB.MapModels.Step;
+import com.praca_inz.Models.MapModels.Leg;
+import com.praca_inz.Models.MapModels.Route;
+import com.praca_inz.Models.MapModels.Step;
 import com.praca_inz.R;
 import com.praca_inz.Utilities;
 

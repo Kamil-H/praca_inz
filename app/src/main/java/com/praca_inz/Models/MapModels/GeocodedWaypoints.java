@@ -1,8 +1,6 @@
-package com.praca_inz.ModelsAndDB.MapModels;
+package com.praca_inz.Models.MapModels;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 /**
  * Created by KamilH on 2015-11-02.

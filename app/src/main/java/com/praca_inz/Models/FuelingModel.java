@@ -1,4 +1,4 @@
-package com.praca_inz.ModelsAndDB;
+package com.praca_inz.Models;
 
 /**
  * Created by KamilH on 2015-10-18.

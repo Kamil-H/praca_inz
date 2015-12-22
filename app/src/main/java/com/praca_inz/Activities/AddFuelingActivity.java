@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.praca_inz.Fragments.DatePickerFragment;
-import com.praca_inz.ModelsAndDB.FuelingDB;
-import com.praca_inz.ModelsAndDB.FuelingModel;
+import com.praca_inz.Database.FuelingDB;
+import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.MainActivity;
 import com.praca_inz.R;
 import com.praca_inz.Utilities;

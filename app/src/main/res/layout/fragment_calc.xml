@@ -94,7 +94,7 @@
                     android:id="@+id/consumptionEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Spalanie (l/100)"
+                    android:hint="SPALANIE (l/100)"
                     android:inputType="numberDecimal" />
 
             </android.support.design.widget.TextInputLayout>
@@ -112,7 +112,7 @@
                     android:id="@+id/distanceEditText"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:hint="Odległość (km)"
+                    android:hint="ODLEGŁOŚĆ (km)"
                     android:layout_below="@+id/input_consumption"
                     android:layout_alignLeft="@+id/input_consumption"
                     android:layout_alignStart="@+id/input_consumption"
@@ -135,7 +135,7 @@
                     android:id="@+id/priceEdtiText"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:hint="Cena paliwa (zł)"
+                    android:hint="CENA (zł/l)"
                     android:layout_below="@+id/input_distance"
                     android:layout_alignLeft="@+id/input_distance"
                     android:layout_alignStart="@+id/input_consumption"

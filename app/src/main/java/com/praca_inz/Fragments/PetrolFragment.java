@@ -17,8 +17,8 @@ import com.praca_inz.Adapters.ExpandableAdapters.ExpandableItemParent;
 import com.praca_inz.Comparators.ChainedComparator;
 import com.praca_inz.Comparators.FuelingMonthComparator;
 import com.praca_inz.Comparators.FuelingYearComparator;
-import com.praca_inz.ModelsAndDB.FuelingDB;
-import com.praca_inz.ModelsAndDB.FuelingModel;
+import com.praca_inz.Database.FuelingDB;
+import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.R;
 import com.praca_inz.Utilities;
 

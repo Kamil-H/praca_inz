@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,13 +16,13 @@ import android.widget.Toast;
 
 import com.beyondar.android.fragment.BeyondarFragmentSupport;
 import com.beyondar.android.world.World;
-import com.praca_inz.CalculateTrack;
+import com.praca_inz.TrackCalculations;
 import com.praca_inz.GeneratePOIs;
 import com.praca_inz.Global;
 import com.praca_inz.ImagesClass;
-import com.praca_inz.ModelsAndDB.MapModels.Leg;
-import com.praca_inz.ModelsAndDB.MapModels.Route;
-import com.praca_inz.ModelsAndDB.MapModels.Step;
+import com.praca_inz.Models.MapModels.Leg;
+import com.praca_inz.Models.MapModels.Route;
+import com.praca_inz.Models.MapModels.Step;
 import com.praca_inz.R;
 import com.praca_inz.UnitConversions;
 import com.praca_inz.Utilities;
@@ -100,8 +99,8 @@ public class NavigationActivity extends FragmentActivity {
             public void onLocationChanged(Location location) {
                 mWorld.setLocation(location);
                 if (iterator > 0 && location.getSpeed() > 0 ){
-                    CalculateTrack calculateTrack = new CalculateTrack(lastLocation, location);
-                    calculateDistances(calculateTrack.getDistance());
+                    TrackCalculations trackCalculations = new TrackCalculations(lastLocation, location);
+                    calculateDistances(trackCalculations.getDistance());
                     lastLocation = location;
                 } else {
                     lastLocation = location;
@@ -140,9 +139,9 @@ public class NavigationActivity extends FragmentActivity {
 
         if(nextManoeuvreDistance <= 100 && !isLessThan){
             isLessThan = true;
-            CalculateTrack calculateTrack = new CalculateTrack(lastLocation, stepList.get(manoeuvreIndex).getEndLocation().getLat(),
+            TrackCalculations trackCalculations = new TrackCalculations(lastLocation, stepList.get(manoeuvreIndex).getEndLocation().getLat(),
                     stepList.get(manoeuvreIndex).getEndLocation().getLon());
-            double nextManoeuvreDistanceTMP = calculateTrack.getDistance();
+            double nextManoeuvreDistanceTMP = trackCalculations.getDistance();
 
             if((nextManoeuvreDistanceTMP - nextManoeuvreDistance) >= 50){
                 Toast.makeText(this, "Zjechałeś z trasy!", Toast.LENGTH_LONG).show();

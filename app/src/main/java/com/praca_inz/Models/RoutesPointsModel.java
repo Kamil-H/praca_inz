@@ -1,4 +1,4 @@
-package com.praca_inz.ModelsAndDB;
+package com.praca_inz.Models;
 
 /**
  * Created by KamilH on 2015-10-24.
@@ -9,6 +9,14 @@ public class RoutesPointsModel {
 
     public RoutesPointsModel(int routeID, double lat, double lon, double time, double accuracy, double speed) {
         this.routeID = routeID;
+        this.lat = lat;
+        this.lon = lon;
+        this.time = time;
+        this.accuracy = accuracy;
+        this.speed = speed;
+    }
+
+    public RoutesPointsModel(double lat, double lon, double time, double accuracy, double speed) {
         this.lat = lat;
         this.lon = lon;
         this.time = time;

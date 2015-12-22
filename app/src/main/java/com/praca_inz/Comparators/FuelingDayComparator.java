@@ -1,6 +1,6 @@
 package com.praca_inz.Comparators;
 
-import com.praca_inz.ModelsAndDB.FuelingModel;
+import com.praca_inz.Models.FuelingModel;
 
 import java.util.Comparator;
 

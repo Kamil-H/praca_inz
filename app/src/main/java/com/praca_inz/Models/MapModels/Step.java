@@ -1,11 +1,8 @@
-package com.praca_inz.ModelsAndDB.MapModels;
+package com.praca_inz.Models.MapModels;
 
 import android.text.Html;
 
-import com.praca_inz.Utilities;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 /**
  * Created by KamilH on 2015-11-02.

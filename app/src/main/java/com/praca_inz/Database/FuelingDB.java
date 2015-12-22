@@ -1,4 +1,4 @@
-package com.praca_inz.ModelsAndDB;
+package com.praca_inz.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.praca_inz.ModelsAndDB.FuelingModel;
+import com.praca_inz.Models.FuelingModel;
 
 import java.util.ArrayList;
 import java.util.List;

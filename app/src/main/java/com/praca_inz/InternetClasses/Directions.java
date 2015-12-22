@@ -6,8 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.praca_inz.Fragments.NavFragment;
-import com.praca_inz.ModelsAndDB.MapModels.DirectionModel;
-import com.praca_inz.ModelsAndDB.MapModels.Route;
+import com.praca_inz.Models.MapModels.DirectionModel;
+import com.praca_inz.Models.MapModels.Route;
 
 import java.io.BufferedReader;
 import java.io.IOException;

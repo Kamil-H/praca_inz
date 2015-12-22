@@ -4,7 +4,7 @@ package com.praca_inz.Comparators;
  * Created by KamilH on 2015-10-21.
  */
 
-import com.praca_inz.ModelsAndDB.FuelingModel;
+import com.praca_inz.Models.FuelingModel;
 
 import java.util.Comparator;
 

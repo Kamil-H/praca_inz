@@ -18,11 +18,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.praca_inz.ModelsAndDB.RoutesDB;
-import com.praca_inz.ModelsAndDB.RoutesModel;
-import com.praca_inz.ModelsAndDB.RoutesPointsDB;
-import com.praca_inz.ModelsAndDB.RoutesPointsModel;
+import com.praca_inz.Database.RoutesDB;
+import com.praca_inz.Models.RoutesModel;
+import com.praca_inz.Database.RoutesPointsDB;
+import com.praca_inz.Models.RoutesPointsModel;
 import com.praca_inz.R;
+import com.praca_inz.TestCalc;
 import com.praca_inz.Utilities;
 
 import java.util.List;
@@ -74,24 +75,21 @@ public class MapActivity extends AppCompatActivity {
 
     private void drawPath(GoogleMap map, List<RoutesPointsModel> routePointsModels){
         bounds = new LatLngBounds.Builder();
-        for (int i = 0; i < routePointsModels.size() - 1; i++) {
-            LatLng src = new LatLng(routePointsModels.get(i).getLat(), routePointsModels.get(i).getLon());
-            LatLng dest = new LatLng(routePointsModels.get(i + 1).getLat(), routePointsModels.get(i + 1).getLon());
-
-            bounds.include(new LatLng(src.latitude, src.longitude));
-
-            Polyline line = map.addPolyline(
-                new PolylineOptions().add(
-                        new LatLng(src.latitude, src.longitude),
-                        new LatLng(dest.latitude,dest.longitude)
-                ).width(5).color(Color.BLUE).geodesic(true)
-            );
+        PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+        for (int i = 0; i < routePointsModels.size(); i++) {
+            LatLng point = new LatLng(routePointsModels.get(i).getLat(), routePointsModels.get(i).getLon());
+            bounds.include(point);
+            options.add(point);
         }
+        Polyline line = map.addPolyline(options);
     }
 
     private void getRoutePoints(int id){
         RoutesPointsDB rPDB = new RoutesPointsDB(this);
         this.routePointsModels = rPDB.getRoute(id);
+
+        TestCalc testCalc = new TestCalc(routePointsModels);
+        Log.w("DISTANCE", String.valueOf(testCalc.getDistance()));
     }
 
     private void getRoute(int id){
@@ -132,5 +130,12 @@ public class MapActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private double getElapsedTime(long tStart, long tEnd){
+        long tDelta = tEnd - tStart;
+        double elapsedSeconds = tDelta / 1000.0;
+
+        return elapsedSeconds;
     }
 }

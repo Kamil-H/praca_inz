@@ -12,11 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.praca_inz.ModelsAndDB.MapModels.Leg;
-import com.praca_inz.ModelsAndDB.MapModels.Route;
-import com.praca_inz.ModelsAndDB.RoutesModel;
+import com.praca_inz.Models.MapModels.Route;
 import com.praca_inz.R;
-import com.praca_inz.Utilities;
 
 public class RecyclerViewAdapterDirections extends RecyclerView.Adapter<RowViewHolderDirections> {
     Context context;
