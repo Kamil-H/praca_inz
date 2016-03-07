@@ -25,7 +25,7 @@ import com.praca_inz.Database.RoutesPointsDB;
 import com.praca_inz.Models.RoutesPointsModel;
 import com.praca_inz.R;
 import com.praca_inz.TestCalc;
-import com.praca_inz.Utilities;
+import com.praca_inz.UnitConversions;
 
 import java.util.List;
 
@@ -108,11 +108,11 @@ public class MapActivity extends AppCompatActivity {
         TextView avgSpeedTextView = (TextView) findViewById(R.id.avgSpeedTextView);
         TextView costTextView = (TextView) findViewById(R.id.costTextView);
 
-        distanceTextView.setText(rM.getDistance() + " km");
+        distanceTextView.setText(getString(R.string.dig2_dist, rM.getDistance() * UnitConversions.M_TO_KM, "km"));
         timeTextView.setText(DateAndTime.timeConversion(rM.getTime()));
-        avgSpeedTextView.setText(rM.getAvgSpeed() + " km/h");
-        maxSpeedTextView.setText(rM.getMaxSpeed() + " km/h");
-        costTextView.setText(rM.getCost() + " zł");
+        avgSpeedTextView.setText(getString(R.string.dig2_speed, rM.getAvgSpeed() * UnitConversions.MS_TO_KMH, "km"));
+        maxSpeedTextView.setText(getString(R.string.dig2_speed, rM.getMaxSpeed() * UnitConversions.MS_TO_KMH, "km"));
+        costTextView.setText(getString(R.string.cost, rM.getCost(), "zł"));
     }
 
     @Override
@@ -131,12 +131,5 @@ public class MapActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private double getElapsedTime(long tStart, long tEnd){
-        long tDelta = tEnd - tStart;
-        double elapsedSeconds = tDelta / 1000.0;
-
-        return elapsedSeconds;
     }
 }

@@ -44,7 +44,7 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
 
         // nadanie nazwy || włączenie przycisk EXIT || nadanie przyciskowi EXIT wyglądu X
-        getSupportActionBar().setTitle("EDYTUJ");
+        getSupportActionBar().setTitle(R.string.edit_button);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
 
@@ -114,21 +114,21 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
         model = modelEditText.getText().toString();
 
         if (TextUtils.isEmpty(consumptionEditText.getText().toString())){
-            consumptionEditText.setError("Proszę podać spalanie!");
+            consumptionEditText.setError(getString(R.string.consumption_empty));
         }
         else {
             consumption = Float.valueOf(consumptionEditText.getText().toString());
         }
 
         if (TextUtils.isEmpty(insuranceEditText.getText().toString())){
-            insuranceEditText.setError("Proszę podać datę końca ubezpieczenia!");
+            insuranceEditText.setError(getString(R.string.insurance_empty));
         }
         else {
             insuranceDate = insuranceEditText.getText().toString();
         }
 
         if (TextUtils.isEmpty(serviceEditText.getText().toString())){
-            serviceEditText.setError("Proszę podać datę końca ważności przeglądu!");
+            serviceEditText.setError(getString(R.string.service_empty));
         }
         else {
             serviceDate = serviceEditText.getText().toString();
@@ -156,7 +156,7 @@ public class CarInfoActivity extends AppCompatActivity implements View.OnClickLi
             goBack();
         }
         else
-            Toast.makeText(getApplicationContext(), "Proszę wypełnić wszystkie pola!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.fill_all_forms), Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -32,13 +32,16 @@ public class DateAndTime {
 
     public static int getDaysBetween(String date){
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMM yyyy");
-        DateTime endDate = DateTime.parse(date, formatter);
+        DateTime endDate;
         DateTime today = DateTime.parse(getCurrentDate(), formatter);
 
-        Days days = Days.daysBetween(today, endDate);
-        int daysBetween = days.getDays();
-
-        return daysBetween;
+        try{
+            endDate = DateTime.parse(date, formatter);
+            Days days = Days.daysBetween(today, endDate);
+            return days.getDays();
+        } catch (IllegalArgumentException e){
+            return 0;
+        }
     }
 
     public static String getCurrentDate(){
@@ -82,5 +85,17 @@ public class DateAndTime {
         minutes -= hours * MINUTES_IN_AN_HOUR;
 
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    public static String localeConversion(String stringDate) {
+        try {
+            SimpleDateFormat dateFormatOld = new SimpleDateFormat("dd MMM yyyy");
+            SimpleDateFormat dateFormatNew = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+            Date date = dateFormatOld.parse(stringDate);
+            return dateFormatNew.format(date);
+
+        } catch (ParseException e) {
+            return null;
+        }
     }
 }

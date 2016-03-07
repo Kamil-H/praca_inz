@@ -36,7 +36,7 @@ public class RoutesModel {
         this.maxSpeed = maxSpeed;
     }
 
-    public RoutesModel() {};
+    public RoutesModel() {}
 
     public double getDistance() {
         return distance;

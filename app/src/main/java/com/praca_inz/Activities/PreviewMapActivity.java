@@ -48,7 +48,7 @@ public class PreviewMapActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Podgląd trasy");
+        getSupportActionBar().setTitle(getString(R.string.map_preview));
 
         Global global = (Global) getApplicationContext();
         route = global.getRoute();

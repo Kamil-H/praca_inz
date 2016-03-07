@@ -44,11 +44,13 @@ public class FuelingModel {
         this.price = price;
         this.litres = litres;
         this.cost = cost;
-        this.day = dateArr[0];
-        this.month = dateArr[1];
-        this.year = dateArr[2];
         this.date = date;
-        this.monthYear = Integer.parseInt(month +""+ year);
+        if (dateArr != null) {
+            this.day = dateArr[0];
+            this.month = dateArr[1];
+            this.year = dateArr[2];
+            this.monthYear = Integer.parseInt(month + "" + year);
+        }
     }
 
     public FuelingModel() {};
@@ -69,10 +71,12 @@ public class FuelingModel {
     public void setDate(String date) {
         int dateArr[] = DateAndTime.getDMYfromString(date);
         this.date = date;
-        this.day = dateArr[0];
-        this.month = dateArr[1];
-        this.year = dateArr[2];
-        this.monthYear = Integer.parseInt(month + "" + year);
+        if (dateArr != null) {
+            this.day = dateArr[0];
+            this.month = dateArr[1];
+            this.year = dateArr[2];
+            this.monthYear = Integer.parseInt(month + "" + year);
+        }
     }
 
     public int getDay() {

@@ -4,8 +4,6 @@ package com.praca_inz;
  * Created by KamilH on 2015-10-22.
  */
 
-// klasa, która pomaga w przeliczaniu jednostek. Używa się jej tak, że po prostu mnożysz swoją wartość przez któryś z tych wzorów,
-// np. masz wartość w M/S to mnożysz ją przez MS_TO_KMH i wynik jest w KM/H
 public class UnitConversions {
 
     private UnitConversions() {}

@@ -20,7 +20,6 @@ import com.praca_inz.Comparators.FuelingYearComparator;
 import com.praca_inz.Database.FuelingDB;
 import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.R;
-import com.praca_inz.Utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,13 +31,13 @@ import java.util.Set;
 /**
  * Created by KamilH on 2015-10-13.
  */
-public class PetrolFragment extends Fragment {
+public class FuelFragment extends Fragment {
     View view;
     FloatingActionButton fab;
 
     private List<Object> listItems;
 
-    public PetrolFragment() {
+    public FuelFragment() {
         // Required empty public constructor
     }
 
@@ -49,7 +48,7 @@ public class PetrolFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_petrol, container, false);
+        view = inflater.inflate(R.layout.fragment_fuel, container, false);
 
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -102,18 +101,19 @@ public class PetrolFragment extends Fragment {
             }
             else cost = fM.getCost();
 
-            ExpandableItemParent expandableItemParent = new ExpandableItemParent(cost, fM.getYear(), fM.getMonth());
+            ExpandableItemParent expandableItemParent = new ExpandableItemParent(getString(R.string.cost, cost, "zł"), fM.getYear(), fM.getMonth());
             List<Object> childObjects = new ArrayList<>();
 
             for (int j = 0; j < fMs.size()+1; j++) {
                 if(j != 0){
                     FuelingModel fuelingModel = fMs.get(j-1);
-                    ExpandableItemChild expandableItemChild = new ExpandableItemChild(fuelingModel.getDate(), String.valueOf(fuelingModel.getCost()) +" zł",
-                            String.valueOf(fuelingModel.getLitres()) + " l", String.valueOf(fuelingModel.getPrice()) + " zł/l");
+                    ExpandableItemChild expandableItemChild = new ExpandableItemChild(fuelingModel.getDate(), getString(R.string.cost, fuelingModel.getCost(), "zł"),
+                            getString(R.string.litres, fuelingModel.getLitres(), "l"), getString(R.string.price, fuelingModel.getPrice(), "zł", "l"));
                     childObjects.add(expandableItemChild);
                 }
                 else {
-                    ExpandableItemChild expandableItemChild = new ExpandableItemChild("Data tankowania", "Koszt", "Ilość", "Cena");
+                    ExpandableItemChild expandableItemChild = new ExpandableItemChild(getString(R.string.tank_date), getString(R.string.cost_word), getString(R.string.amount_word),
+                            getString(R.string.price_word));
                     childObjects.add(expandableItemChild);
                 }
             }

@@ -83,6 +83,7 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
         );
 
         displayCards();
+        resetValues();
 
         trackRoute = new TrackRoute(getActivity());
         trackRoute.addValuesChangeListener(this);
@@ -95,9 +96,9 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
                 if (isStart) {
                     if (isGPSenabled()) {
                         trackRoute.startRecording();
-                        Toast.makeText(getActivity(), "Pomiar rozpocznie się w momencie, gdy GPS ustali pozycję", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.wait_for_GPS), Toast.LENGTH_SHORT).show();
 
-                        startButton.setText("STOP");
+                        startButton.setText(getString(R.string.stop_button));
                         isStart = false;
                     }
                 } else {
@@ -107,7 +108,7 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
                         showCostDialog();
                     }
 
-                    startButton.setText("START");
+                    startButton.setText(getString(R.string.start_button));
                     isStart = true;
                 }
             }
@@ -122,12 +123,18 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
         return view;
     }
 
+    private void resetValues(){
+        avgSpeedTextView.setText(getString(R.string.dig2_speed, 0.00, "km"));
+        maxSpeedTextView.setText(getString(R.string.dig2_speed, 0.00, "km"));
+        distanceTextView.setText(getString(R.string.dig2_dist, 0.00, "km"));
+        timeTextView.setText(DateAndTime.timeConversion(0));
+    }
+
     private void getFuelCost(double consum){
         int petrolType = carInfoPreferences.getInt("petrolType", 0);
         double price = petrolPreferences.getFloat(String.valueOf(petrolType), 0);
         if (consum != 0) {
             trackRoute.stopRecording(price * consum);
-            Log.w("TAG", String.format("petrolType: %d, price: %f, consumption: %f", petrolType, price, consum));
         } else {
             trackRoute.stopRecording(0);
         }
@@ -142,15 +149,15 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
     }
 
     private void fillForms(RoutesModel routesModel){
-        avgSpeedTextView.setText(String.valueOf(String.format("%.2f", routesModel.getAvgSpeed())));
-        maxSpeedTextView.setText(String.valueOf(String.format("%.2f", routesModel.getMaxSpeed())));
-        distanceTextView.setText(String.valueOf(String.format("%.2f", routesModel.getDistance() * UnitConversions.M_TO_KM)));
+        avgSpeedTextView.setText(getString(R.string.dig2_speed, routesModel.getAvgSpeed() * UnitConversions.MS_TO_KMH, "km"));
+        maxSpeedTextView.setText(getString(R.string.dig2_speed, routesModel.getMaxSpeed() * UnitConversions.MS_TO_KMH, "km"));
+        distanceTextView.setText(getString(R.string.dig2_dist, routesModel.getDistance() * UnitConversions.M_TO_KM, "km"));
     }
 
     private boolean isGPSenabled() {
         LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))  {
-            Toast.makeText(getActivity(), "Proszę włączyć GPS.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.enable_GPS), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(
                     Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(intent);
@@ -168,14 +175,14 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
         final EditText consumptionEditText = (EditText) dialogView.findViewById(R.id.consumptionEditText);
         consumptionEditText.setText(String.valueOf(consumption));
 
-        dialogBuilder.setTitle("Proszę podać spalanie");
+        dialogBuilder.setTitle(getString(R.string.consumption_empty));
         //dialogBuilder.setMessage("Enter text below");
         dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 getFuelCost(Double.parseDouble(consumptionEditText.getText().toString()));
             }
         });
-        dialogBuilder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+        dialogBuilder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 getFuelCost(consumption);
             }
@@ -196,7 +203,7 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
             long millis = System.currentTimeMillis() - tStart;
             int seconds = (int) (millis / 1000);
 
-            timeTextView.setText(String.format(DateAndTime.timeConversion(seconds)));
+            timeTextView.setText(DateAndTime.timeConversion(seconds));
             int mInterval = 1000;
             mHandler.postDelayed(mStatusChecker, mInterval);
         }
@@ -222,6 +229,7 @@ public class RoutesFragment extends Fragment implements ValuesChangeListener, Fi
 
     @Override
     public void recordingFinished() {
+        resetValues();
         displayCards();
     }
 }

@@ -1,0 +1,138 @@
+<resources>
+    <string name="app_name">Praca_inz</string>
+    <string name="action_settings">Settings</string>
+    <string name="calc">CALC</string>
+    <string name="info">INFO</string>
+    <string name="nav">NAV</string>
+    <string name="fuel">FUEL</string>
+
+    <string-array name="fuel_types">
+        <item>Benzyna Pb 98</item>
+        <item>Benzyna Pb 95</item>
+        <item>Olej napędowy (Diesel)</item>
+        <item>Gaz LPG</item>
+    </string-array>
+
+    <string name="title_activity_add_fueling">AddFueling</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_preview_map">PreviewMapActivity</string>
+    <string name="title_activity_car_info">CarInfoActivity</string>
+
+    <string name="edit_button">EDYTUJ</string>
+
+    <string name="brand_and_model">MARKA I MODEL</string>
+    <string name="production_year">ROK PRODUKCJI</string>
+    <string name="type_of_fuel">RODZAJ PALIWA</string>
+    <string name="consumption">ŚREDNIE SPALANIE</string>
+    <string name="insurance_date">UBEZPICZENIE WAŻNE DO</string>
+    <string name="service_date">PRZEGLĄD WAŻNY DO</string>
+
+    <string name="days_before">%1$s (%2$d dni do końca)</string>
+    <string name="days_after">%1$s (%2$d dni temu minął termin)</string>
+    <string name="brand">MARKA</string>
+    <string name="model">MODEL</string>
+
+    <string name="consumption_empty">Proszę podać spalanie</string>
+    <string name="insurance_empty">Proszę podać datę końca ważności ubezpieczenia</string>
+    <string name="service_empty">Proszę podać datę końca ważności przeglądu</string>
+    <string name="distance_empty">Proszę podać odległość</string>
+    <string name="price_empty">Proszę podać cenę paliwa</string>
+    <string name="fuel_type_empty">Proszę zaznaczyć jeden z rodzajów paliwa</string>
+    <string name="fill_all_forms">Proszę wypełnić wszystkie pola!</string>
+    <string name="fill_2_from_3">Proszę wypełnić 2 z 3 pól</string>
+
+    <string name="search_hint">Podaj cel podróży</string>
+    <string name="wait_for_GPS">Pomiar rozpocznie się w momencie, gdy GPS ustali pozycję</string>
+    <string name="wait_for_GPS2">Trasy zostaną wyświetlone w momencie, gdy GPS ustali Twoją pozycję</string>
+    <string name="enable_GPS">Proszę włączyć GPS</string>
+    <string name="distance_left">DYSTANS DO POKONANIA</string>
+    <string name="arrive_time">GODZINA PRZYJAZDU</string>
+    <string name="map_preview">Podgląd trasy</string>
+    <string name="next">NASTĘPNIE:</string>
+    <string name="distance">ODLEGŁOŚĆ</string>
+    <string name="whole_time">ŁĄCZNY CZAS</string>
+    <string name="avg_speed">ŚREDNIA PRĘDKOŚĆ</string>
+    <string name="max_speed">PRĘDKOŚĆ MAKS.</string>
+    <string name="start_button">START</string>
+    <string name="stop_button">STOP</string>
+    <string name="zero_distance">0.00 km</string>
+    <string name="zero_time">00:00:00</string>
+    <string name="history">HISTORIA</string>
+    <string name="cancel">Anuluj</string>
+    <string name="dig2_speed">%1$.2f %2$s/h</string>
+    <string name="dig2_dist">%1$.2f %2$s</string>
+    <string name="dig_speed">%1$f %2$s/h</string>
+    <string name="dig_dist">%1$f %2$s</string>
+    <string name="cost">%1$.2f %2$s</string>
+    <string name="litres">%1$.2f %2$s</string>
+    <string name="price">%1$.2f %2$s/%3$s</string>
+    <string name="summary">PODSUMOWANIE</string>
+    <string name="estimated_cost">PRZYBLIŻONY KOSZT</string>
+    <string name="monthly_fuel_cost">Miesięczny koszt paliwa</string>
+    <string name="consumption_calc">SPALANIE (%1$s/100)</string>
+    <string name="price_calc">CENA (%1$s/%2$s)</string>
+    <string name="distance_calc">ODLEGŁOŚĆ (%1$s)</string>
+    <string name="calculate">OBLICZ</string>
+
+    <string name="tank_date">Data tankowania</string>
+    <string name="cost_word">Koszt</string>
+    <string name="amount_word">Ilość</string>
+    <string name="price_word">Cena</string>
+
+    <string name="cost_calculated">Koszt Twojej podróży to: %1$.2f %2$s</string>
+    <string name="save">Zapisz</string>
+
+    <string-array name="car_brands">
+        <item>Acura</item>
+        <item>Alfa Romeo</item>
+        <item>Aston Martin</item>
+        <item>Audi</item>
+        <item>Bentley</item>
+        <item>BMW</item>
+        <item>Bugatti</item>
+        <item>Chevrolet</item>
+        <item>Chrysler</item>
+        <item>Citroën</item>
+        <item>Corbin</item>
+        <item>Daewoo</item>
+        <item>Ferrari</item>
+        <item>FIAT</item>
+        <item>Foose</item>
+        <item>Ford</item>
+        <item>Honda</item>
+        <item>HUMMER</item>
+        <item>Hyundai</item>
+        <item>Infiniti</item>
+        <item>Isuzu</item>
+        <item>Jaguar</item>
+        <item>Jeep</item>
+        <item>Kia</item>
+        <item>Lamborghini</item>
+        <item>Land Rover</item>
+        <item>Lexus</item>
+        <item>Lotus</item>
+        <item>Maserati</item>
+        <item>Maybach</item>
+        <item>Mazda</item>
+        <item>McLaren</item>
+        <item>Mercedes-Benz</item>
+        <item>MINI</item>
+        <item>Mitsubishi</item>
+        <item>Morgan</item>
+        <item>Nissan</item>
+        <item>Peugeot</item>
+        <item>Porsche</item>
+        <item>Ram</item>
+        <item>Rolls-Royce</item>
+        <item>Saab</item>
+        <item>Seat</item>
+        <item>Smart</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Tesla</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+    </string-array>
+</resources>
+

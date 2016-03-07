@@ -70,7 +70,7 @@ public class InfoFragment extends Fragment {
     }
 
     private void fillForms(){
-        String petrolTypes[] = getResources().getStringArray(R.array.petrol_types);
+        String petrolTypes[] = getResources().getStringArray(R.array.fuel_types);
         brandAndModelTextView = (TextView) view.findViewById(R.id.brandAndModelTextView);
         yearTextView = (TextView) view.findViewById(R.id.yearTextView);
         consumptionTextView = (TextView) view.findViewById(R.id.petrolTypeTextView);
@@ -85,14 +85,14 @@ public class InfoFragment extends Fragment {
 
         int daysToInsurance = DateAndTime.getDaysBetween(insuranceDate);
         if(daysToInsurance >= 0)
-            insuranceTextView.setText(String.format("%s (%d dni do końca)", insuranceDate, daysToInsurance));
+            insuranceTextView.setText(getString(R.string.days_before, insuranceDate, daysToInsurance));
         else
-            insuranceTextView.setText(String.format("%s (%d dni temu minął termin)", insuranceDate, Math.abs(daysToInsurance)));
+            insuranceTextView.setText(getString(R.string.days_after, insuranceDate, Math.abs(daysToInsurance)));
 
         int daysToService = DateAndTime.getDaysBetween(serviceDate);
         if(daysToService >= 0)
-            serviceTextView.setText(String.format("%s (%d dni do końca)", serviceDate, daysToService));
+            serviceTextView.setText(getString(R.string.days_before, serviceDate, daysToService));
         else
-            serviceTextView.setText(String.format("%s (%d dni temu minął termin)", serviceDate, Math.abs(daysToService)));
+            serviceTextView.setText(getString(R.string.days_after, serviceDate, Math.abs(daysToService)));
     }
 }

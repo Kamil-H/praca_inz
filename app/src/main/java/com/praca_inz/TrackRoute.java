@@ -73,22 +73,21 @@ public class TrackRoute {
 
                 double accuracy = location.getAccuracy();
                 double elapsedTime = getElapsedTime(tStart, tEnd);
-                double speed = location.getSpeed() * UnitConversions.MS_TO_KMH;
+                double speed = location.getSpeed();
 
                 if(!isFirstLocation){
-                    TrackCalculations trackCalculations = new TrackCalculations(lastLocation, location, elapsedTime, distance);
-                    saveData(trackCalculations.getAvgSpeed(), speed, trackCalculations.getDistance(), elapsedTime);
-                    lastLocation = location;
+                    if (speed > 0) {
+                        TrackCalculations trackCalculations = new TrackCalculations(lastLocation, location, elapsedTime, distance);
+                        RoutesPointsModel routesPointsModel = new RoutesPointsModel((int) routeID, location.getLatitude(), location.getLongitude(), elapsedTime, accuracy, speed);
+                        updateRoutesPointsDB(routesPointsModel);
+                        saveData(trackCalculations.getAvgSpeed(), speed, trackCalculations.getDistance(), elapsedTime);
+                        lastLocation = location;
+                    }
                 }
                 else {
                     tStart = System.currentTimeMillis();
                     lastLocation = location;
                     isFirstLocation = false;
-                }
-
-                if (speed > 0){
-                    RoutesPointsModel routesPointsModel = new RoutesPointsModel((int) routeID, location.getLatitude(), location.getLongitude(), elapsedTime, accuracy, speed);
-                    updateRoutesPointsDB(routesPointsModel);
                 }
             }
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -125,12 +124,13 @@ public class TrackRoute {
 
     public void stopRecording(double fuelCost){
         if(isRecording){
-            RoutesModel routesModel = new RoutesModel(Utilities.roundOff(this.distance * UnitConversions.M_TO_KM), this.time, getTripCost(fuelCost), Utilities.roundOff(this.avgSpeed),
+            RoutesModel routesModel = new RoutesModel(Utilities.roundOff(this.distance), this.time, getTripCost(fuelCost), Utilities.roundOff(this.avgSpeed),
                     Utilities.roundOff(this.maxSpeed), DateAndTime.getCurrentTime());
             updateRoutesDB(routesModel);
         }
         removeGPSupdates();
         isRecording = false;
+        resetValues();
         notifyFinishRecording();
     }
 
@@ -149,5 +149,12 @@ public class TrackRoute {
 
     public boolean isRecording(){
         return isRecording;
+    }
+
+    private void resetValues(){
+        maxSpeed = 0;
+        avgSpeed = 0;
+        distance = 0;
+        time = 0;
     }
 }

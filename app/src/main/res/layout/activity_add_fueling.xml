@@ -58,7 +58,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_lcost"
+        android:id="@+id/input_cost"
         android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -85,11 +85,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="DATA TANKOWANIA"
+        android:text="@string/tank_date"
         android:id="@+id/textView14"
-        android:layout_below="@+id/input_lcost"
-        android:layout_alignLeft="@+id/input_lcost"
-        android:layout_alignStart="@+id/input_lcost"
+        android:layout_below="@+id/input_cost"
+        android:layout_alignLeft="@+id/input_cost"
+        android:layout_alignStart="@+id/input_cost"
         android:layout_marginTop="40dp"
         android:textSize="12dp"/>
 

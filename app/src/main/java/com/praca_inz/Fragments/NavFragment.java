@@ -101,7 +101,7 @@ public class NavFragment extends Fragment {
                         getDirections(lastLocation.getLatitude(), lastLocation.getLongitude(), destAddress.getLatitude(), destAddress.getLongitude());
                     }
                     if(isSearching){
-                        Toast.makeText(getActivity(), "Trasy zostaną wyświetlone w momencie, gdy GPS ustali Twoją pozycję.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), getString(R.string.wait_for_GPS2), Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -238,7 +238,7 @@ public class NavFragment extends Fragment {
     private boolean isGPSenabled() {
         locationManager = (LocationManager)this.getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))  {
-            Toast.makeText(getActivity(), "Proszę włączyć GPS.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.enable_GPS), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(
                     Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(intent);

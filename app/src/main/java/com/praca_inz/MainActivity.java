@@ -18,7 +18,7 @@ import android.support.v7.widget.Toolbar;
 import com.praca_inz.Fragments.CalcFragment;
 import com.praca_inz.Fragments.InfoFragment;
 import com.praca_inz.Fragments.NavFragment;
-import com.praca_inz.Fragments.PetrolFragment;
+import com.praca_inz.Fragments.FuelFragment;
 import com.praca_inz.Fragments.RoutesFragment;
 import com.praca_inz.InternetClasses.Region;
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new InfoFragment());
         adapter.addFragment(new NavFragment());
         adapter.addFragment(new RoutesFragment());
-        adapter.addFragment(new PetrolFragment());
+        adapter.addFragment(new FuelFragment());
         adapter.addFragment(new CalcFragment());
         viewPager.setAdapter(adapter);
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.praca_inz.DateAndTime;
 import com.praca_inz.Models.RoutesModel;
 import com.praca_inz.R;
+import com.praca_inz.UnitConversions;
 import com.praca_inz.Utilities;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RowViewHolder> {
@@ -47,10 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RowViewHolder> {
     public void onBindViewHolder(RowViewHolder rowViewHolder, final int position) {
         RoutesModel items = itemsList.get(position);
 
-        String distance = String.format("%.2f", items.getDistance());
-
         rowViewHolder.date.setText(items.getDate());
-        rowViewHolder.distance.setText(String.valueOf(distance + " km"));
+        rowViewHolder.distance.setText(context.getString(R.string.dig2_dist, items.getDistance() * UnitConversions.M_TO_KM, "km"));
         rowViewHolder.time.setText(DateAndTime.timeConversion(items.getTime()));
     }
 }

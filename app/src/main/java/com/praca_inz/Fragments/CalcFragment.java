@@ -3,6 +3,7 @@ package com.praca_inz.Fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -47,9 +48,17 @@ public class CalcFragment extends Fragment {
 
         resultTextView = (TextView) view.findViewById(R.id.resultTextView);
         consumptionEditText = (EditText) view.findViewById(R.id.consumptionEditText);
+
         distanceEditText = (EditText) view.findViewById(R.id.distanceEditText);
         priceEdtiText = (EditText) view.findViewById(R.id.priceEdtiText);
         radioGroup = (RadioGroup) view.findViewById(R.id.radioSex);
+
+        TextInputLayout inputPrice = (TextInputLayout) view.findViewById(R.id.input_price);
+        inputPrice.setHint(getString(R.string.price_calc, "zł", "l"));
+        TextInputLayout inputDistance = (TextInputLayout) view.findViewById(R.id.input_distance);
+        inputDistance.setHint(getString(R.string.distance_calc, "km"));
+        TextInputLayout inputConsumption = (TextInputLayout) view.findViewById(R.id.input_consumption);
+        inputConsumption.setHint(getString(R.string.consumption_calc, "l"));
 
         button = (Button) view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +95,7 @@ public class CalcFragment extends Fragment {
 
         // sprawdzenie czy zostało coś wpisane w pole spalania
         if (TextUtils.isEmpty(consumptionEditText.getText().toString())){
-            consumptionEditText.setError("Proszę podać spalanie!");
+            consumptionEditText.setError(getString(R.string.consumption_empty));
         }
         else {
             consumption = Float.valueOf(consumptionEditText.getText().toString());
@@ -94,7 +103,7 @@ public class CalcFragment extends Fragment {
 
         // sprawdzenie czy zostało coś wpisane w pole odległości
         if (TextUtils.isEmpty(distanceEditText.getText().toString())){
-            distanceEditText.setError("Proszę podać odległość!");
+            distanceEditText.setError(getString(R.string.distance_empty));
         }
         else {
             distance = Float.valueOf(distanceEditText.getText().toString());
@@ -102,7 +111,7 @@ public class CalcFragment extends Fragment {
 
         // sprawdzenie czy zostało coś wpisane w pole ceny
         if (TextUtils.isEmpty(priceEdtiText.getText().toString())){
-            priceEdtiText.setError("Proszę podać odległość!");
+            priceEdtiText.setError(getString(R.string.price_empty));
         }
         else {
             price = Float.valueOf(priceEdtiText.getText().toString());
@@ -113,13 +122,13 @@ public class CalcFragment extends Fragment {
             index = radioGroup.indexOfChild(getActivity().findViewById(radioGroup.getCheckedRadioButtonId()));
         }
         else {
-            Toast.makeText(getActivity().getApplicationContext(), "Proszę zaznaczyć jeden z rodzajów paliwa!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.fuel_type_empty), Toast.LENGTH_SHORT).show();
         }
 
         // wyliczenie i wyświetlenie kosztów podróży z wcześniejszym spawdzeniem czy zostały wypełnione wszystkie pola
         if (consumption != 0 && distance != 0 && index != -1) {
             float result = price * (distance / 100) * consumption;
-            resultTextView.setText("Koszt Twojej podróży to: " + String.valueOf(Utilities.roundOff(result)) + " zł");
+            resultTextView.setText(getString(R.string.cost_calculated, Utilities.roundOff(result), "zł"));
         }
     }
 }

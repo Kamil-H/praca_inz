@@ -9,18 +9,18 @@ public class ExpandableItemParent {
 
     private final int year;
     private final int month;
-    private final float cost;
+    private final String cost;
     private boolean expanded;
     private List<Object> childObjects;
 
-    public ExpandableItemParent(float cost, int year, int month) {
+    public ExpandableItemParent(String cost, int year, int month) {
         this.cost = cost;
         this.year = year;
         this.month = month;
         this.expanded = false;
     }
 
-    public float getCost() {
+    public String getCost() {
         return cost;
     }
 

@@ -1,6 +1,7 @@
 package com.praca_inz.Activities;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +34,7 @@ public class AddFuelingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // nadanie nazwy || włączenie przycisk EXIT || nadanie przyciskowi EXIT wyglądu X
-        getSupportActionBar().setTitle("EDYTUJ");
+        getSupportActionBar().setTitle(getString(R.string.edit_button));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
 
@@ -41,6 +42,13 @@ public class AddFuelingActivity extends AppCompatActivity {
         costEditText = (EditText) findViewById(R.id.costEditText);
         litresEditText = (EditText) findViewById(R.id.litresEditText);
         priceEditText = (EditText) findViewById(R.id.priceEditText);
+
+        TextInputLayout inputPrice = (TextInputLayout) findViewById(R.id.input_price);
+        inputPrice.setHint(getString(R.string.price_calc, "zł", "l"));
+        TextInputLayout inputDistance = (TextInputLayout) findViewById(R.id.input_distance);
+        inputDistance.setHint(getString(R.string.distance_calc, "km"));
+        TextInputLayout inputConsumption = (TextInputLayout) findViewById(R.id.input_consumption);
+        inputConsumption.setHint(getString(R.string.consumption_calc, "l"));
 
         dateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,10 +109,8 @@ public class AddFuelingActivity extends AppCompatActivity {
                     litres = cost / price;
                     saveAndGoBack();
                 }
-                else Toast.makeText(getApplicationContext(), "Proszę wypełnić 2 z 3 pól", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(getApplicationContext(), getString(R.string.fill_2_from_3), Toast.LENGTH_SHORT).show();
             }
-        //String val = String.valueOf(price) + " " + String.valueOf(litres) + " " + String.valueOf(cost);
-        //Log.v("FUELING", val);
     }
 
     private void saveAndGoBack(){

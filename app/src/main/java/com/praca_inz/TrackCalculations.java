@@ -64,8 +64,7 @@ public class TrackCalculations {
     // obliczanie prędkości w m/s i konwersja do km/h
     private double calculateSpeed(double distance, double time){
         double speed = distance / time;
-        //Log.v("DISTANCE", "m/s: " + speed + " " + "km/h" + speed * UnitConversions.MS_TO_KMH);
-        return speed * UnitConversions.MS_TO_KMH;
+        return speed;
     }
 
     public double getDistance() {

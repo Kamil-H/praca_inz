@@ -4,16 +4,83 @@
     <string name="calc">CALC</string>
     <string name="info">INFO</string>
     <string name="nav">NAV</string>
-    <string name="petrol">PETROL</string>
-    <string name="title_activity_car_info">CarInfoActivity</string>
-    <string name="search_hint">Podaj cel podróży</string>
+    <string name="fuel">FUEL</string>
 
-    <string-array name="petrol_types">
-        <item>Benzyna Pb 98</item>
-        <item>Benzyna Pb 95</item>
-        <item>Olej napędowy (Diesel)</item>
-        <item>Gaz LPG</item>
+    <string-array name="fuel_types">
+        <item>Pb 98</item>
+        <item>Pb 95</item>
+        <item>Diesel</item>
+        <item>LPG</item>
     </string-array>
+
+    <string name="title_activity_add_fueling">AddFueling</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_preview_map">PreviewMapActivity</string>
+    <string name="title_activity_car_info">CarInfoActivity</string>
+
+    <string name="edit_button">EDIT</string>
+
+    <string name="brand_and_model">BRAND I MODEL</string>
+    <string name="production_year">PRODUCTION</string>
+    <string name="type_of_fuel">FUEL TYPE</string>
+    <string name="consumption">AVG CONSUMPTION</string>
+    <string name="insurance_date">INSURANCE VALID FOR</string>
+    <string name="service_date">SERVICE VALID FOR</string>
+
+    <string name="days_before">%1$s (%2$d days left)</string>
+    <string name="days_after">%1$s (%2$d days ago was the deadline)</string>
+    <string name="brand">BRAND</string>
+    <string name="model">MODEL</string>
+
+    <string name="consumption_empty">Please enter consumption</string>
+    <string name="insurance_empty">Please enter date of the end of your insurance validity</string>
+    <string name="service_empty">Please enter date of the end of your service validity</string>
+    <string name="distance_empty">Please enter the distance</string>
+    <string name="price_empty">Please enter a price</string>
+    <string name="fuel_type_empty">Please, select one of the fuel types</string>
+    <string name="fill_all_forms">Please, fill all forms!</string>
+    <string name="fill_2_from_3">Please, fill 2 of 3 forms</string>
+
+    <string name="search_hint">Please, set the destination</string>
+    <string name="wait_for_GPS">Recording is going to start, right after GPS has a fix</string>
+    <string name="wait_for_GPS2">Routes are going to appear, right after GPS has a fix</string>
+    <string name="enable_GPS">Please, enable GPS</string>
+    <string name="distance_left">DISTANCE LEFT</string>
+    <string name="arrive_time">ARRIVE TIME</string>
+    <string name="map_preview">Track preview</string>
+    <string name="next">NEXT:</string>
+    <string name="distance">DISTANCE</string>
+    <string name="whole_time">TOTAL TIME</string>
+    <string name="avg_speed">AVG SPEED</string>
+    <string name="max_speed">MAX SPEED</string>
+    <string name="start_button">START</string>
+    <string name="stop_button">STOP</string>
+    <string name="zero_distance">0.00 km</string>
+    <string name="zero_time">00:00:00</string>
+    <string name="history">HISTORY</string>
+    <string name="cancel">Cancel</string>
+    <string name="dig2_speed">%1$.2f %2$s/h</string>
+    <string name="dig2_dist">%1$.2f %2$s</string>
+    <string name="dig_speed">%1$f %2$s/h</string>
+    <string name="dig_dist">%1$f %2$s</string>
+    <string name="cost">%1$.2f %2$s</string>
+    <string name="litres">%1$.2f %2$s</string>
+    <string name="price">%1$.2f %2$s/%3$s</string>
+    <string name="summary">SUMMARY</string>
+    <string name="estimated_cost">ESTIMATED COST</string>
+    <string name="monthly_fuel_cost">Monthly fuel cost</string>
+    <string name="consumption_calc">COSUM (%1$s/100)</string>
+    <string name="price_calc">PRICE (%1$s/%2$s)</string>
+    <string name="distance_calc">DISTANCE (%1$s)</string>
+    <string name="calculate">CALCULATE</string>
+
+    <string name="tank_date">Date of fueling</string>
+    <string name="cost_word">Cost</string>
+    <string name="amount_word">Amount</string>
+    <string name="price_word">Price</string>
+
+    <string name="cost_calculated">Cost of your journey: %1$.2f %2$s</string>
+    <string name="save">Save</string>
 
     <string-array name="car_brands">
         <item>Acura</item>
@@ -67,8 +134,5 @@
         <item>Volkswagen</item>
         <item>Volvo</item>
     </string-array>
-    <string name="title_activity_add_fueling">AddFueling</string>
-    <string name="title_activity_map">MapActivity</string>
-    <string name="title_activity_preview_map">PreviewMapActivity</string>
 </resources>
 

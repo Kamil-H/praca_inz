@@ -54,7 +54,7 @@
                     android:layout_alignStart="@+id/spinner"
                     android:layout_alignBottom="@+id/imageView3"
                     android:layout_marginLeft="0dp"
-                    android:hint="Podaj cel podróży"
+                    android:hint="@string/search_hint"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:singleLine="true"

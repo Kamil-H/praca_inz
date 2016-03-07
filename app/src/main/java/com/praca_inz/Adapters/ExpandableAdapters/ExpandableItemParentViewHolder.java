@@ -36,8 +36,8 @@ public class ExpandableItemParentViewHolder extends RecyclerView.ViewHolder {
         return new ExpandableItemParentViewHolder(view, costTextView, yearTextView, monthTextView, ivParentExpand);
     }
 
-    public void setParentText(float cost, int year, int month) {
-        costTextView.setText(String.valueOf(cost) + " zł");
+    public void setParentText(String cost, int year, int month) {
+        costTextView.setText(cost);
         yearTextView.setText(String.valueOf(year));
         monthTextView.setText(String.valueOf(month));
     }
