@@ -28,16 +28,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
     private int[] tabIcons = {
-            R.drawable.ic_information_white_24dp,
-            R.drawable.ic_navigation_white_24dp,
-            R.drawable.ic_maps_map,
-            R.drawable.ic_gas_station_white_24dp,
-            R.drawable.ic_calculator_white_24dp,
-    };
+                R.drawable.ic_information_white_24dp,
+                R.drawable.ic_navigation_white_24dp,
+                R.drawable.ic_maps_map,
+                R.drawable.ic_gas_station_white_24dp,
+                R.drawable.ic_calculator_white_24dp,
+        };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         getPetrolPrices();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -90,11 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (loc != null){
             // odczytanie długości i szerokości geograficznej
-            //double lat = loc.getLatitude();
-            //double lon = loc.getLongitude();
-
-            double lat = 51.1079;
-            double lon = 17.0385;
+            double lat = loc.getLatitude();
+            double lon = loc.getLongitude();
             new Region(this).execute(lat, lon);
         }
     }

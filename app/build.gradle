@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -17,11 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:cardview-v7:21.0.+'
@@ -30,5 +37,5 @@ dependencies {
     compile 'org.immutables:gson:2.1.0'
     compile 'joda-time:joda-time:2.9.1'
     compile files ('libs/beyondar-v0.9.3.jar')
-    compile files('beyondar-googlemap-plugin-v0.9.0.jar')
+    compile files('libs/beyondar-googlemap-plugin-v0.9.0.jar')
 }
