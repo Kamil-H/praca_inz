@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -16,174 +16,170 @@
      <fragment
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:layout_weight="2"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/map"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/map" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/summary"
+        android:id="@+id/textView22"
+        android:layout_marginTop="15dp"
+        style="@style/textTitleMedium"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cv"
         app:cardCornerRadius="2dp"
-        app:cardUseCompatPadding="true"
-        android:layout_below="@+id/map"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp">
+        android:layout_margin="5dp">
 
-        <RelativeLayout
+        <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:orientation="horizontal"
-            android:layout_below="@+id/map"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/distance"
-                android:id="@+id/textView19"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/whole_time"
-                android:id="@+id/textView21"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="0.00 km"
-                android:id="@+id/timeTextView"
-                android:textStyle="bold"
-                android:layout_below="@+id/textView19"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="40dp"
-                android:gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/distance"
+                        android:id="@+id/textView19"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="00:00:00"
-                android:id="@+id/distanceTextView"
-                android:layout_below="@+id/textView21"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="50dp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 km"
+                        android:id="@+id/timeTextView"
+                        style="@style/textLarge" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/avg_speed"
-                android:id="@+id/textView24"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="25dp" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="0.00 km/h"
-                android:id="@+id/avgSpeedTextView"
-                android:layout_below="@+id/textView24"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="35dp"
-                android:gravity="center" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/max_speed"
-                android:id="@+id/textView26"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="70dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/whole_time"
+                        android:id="@+id/textView21" />
 
-            <TextView
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="0.00 km/h"
-                android:id="@+id/maxSpeedTextView"
-                android:layout_below="@+id/textView26"
-                android:layout_alignLeft="@+id/textView26"
-                android:layout_alignStart="@+id/textView26"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="-5dp"
-                android:gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:00:00"
+                        android:id="@+id/distanceTextView"
+                        style="@style/textLarge" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/estimated_cost"
-                android:id="@+id/textView23"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="130dp"
-                android:layout_marginLeft="25dp" />
 
-            <TextView
-                android:layout_width="110dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="0.00 zł"
-                android:id="@+id/costTextView"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_below="@+id/textView23"
-                android:layout_alignLeft="@+id/textView23"
-                android:layout_alignStart="@+id/textView23"
-                android:layout_marginLeft="11dp" />
-        </RelativeLayout>
+                android:layout_marginTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/avg_speed"
+                        android:id="@+id/textView24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 km/h"
+                        android:id="@+id/avgSpeedTextView"
+                        style="@style/textLarge" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/max_speed"
+                        android:id="@+id/textView26" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 km/h"
+                        android:id="@+id/maxSpeedTextView"
+                        style="@style/textLarge" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/estimated_cost"
+                        android:id="@+id/textView23" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 zł"
+                        android:id="@+id/costTextView"
+                        android:gravity="center"
+                        style="@style/textLarge" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/summary"
-        android:id="@+id/textView22"
-        android:layout_below="@+id/map"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
-
-
-</RelativeLayout>
+</LinearLayout>

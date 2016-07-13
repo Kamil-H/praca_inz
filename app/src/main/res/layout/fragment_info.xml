@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,180 +12,149 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
-        android:id="@+id/cv"
-        >
+        android:id="@+id/cv">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="420dp"
-            android:padding="0dp">
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="175dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:id="@+id/imageView"
-                android:src="@drawable/car"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="false" />
+                android:src="@drawable/car" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/brand_and_model"
-                android:id="@+id/textView7"
-                android:layout_below="@+id/imageView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textSize="11dp" />
+                android:padding="10dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/brandAndModelTextView"
-                android:layout_below="@+id/textView7"
-                android:layout_alignLeft="@+id/textView7"
-                android:layout_alignStart="@+id/textView7"
-                android:textSize="15dp"
-                android:textColor="@color/navigationBarColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand_and_model"
+                    android:id="@+id/textView7"
+                    android:layout_marginTop="10dp"
+                    style="@style/textTitleSmall"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/production_year"
-                android:id="@+id/textView8"
-                android:layout_below="@+id/brandAndModelTextView"
-                android:layout_alignLeft="@+id/brandAndModelTextView"
-                android:layout_alignStart="@+id/brandAndModelTextView"
-                android:layout_marginTop="10dp"
-                android:textSize="11dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/brandAndModelTextView"
+                    style="@style/textMedium"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/yearTextView"
-                android:layout_below="@+id/textView8"
-                android:layout_alignLeft="@+id/textView8"
-                android:layout_alignStart="@+id/textView8"
-                android:textSize="15dp"
-                android:textColor="@color/navigationBarColor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/production_year"
+                    android:id="@+id/textView8"
+                    android:layout_marginTop="10dp"
+                    style="@style/textTitleSmall" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/type_of_fuel"
-                android:id="@+id/textView10"
-                android:layout_below="@+id/yearTextView"
-                android:layout_alignLeft="@+id/yearTextView"
-                android:layout_alignStart="@+id/yearTextView"
-                android:layout_marginTop="10dp"
-                android:textSize="11dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/yearTextView"
+                    style="@style/textMedium"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/consumptionTextView"
-                android:layout_below="@+id/textView10"
-                android:layout_alignLeft="@+id/textView10"
-                android:layout_alignStart="@+id/textView10"
-                android:textSize="15dp"
-                android:textColor="@color/navigationBarColor" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/insurance_date"
-                android:id="@+id/textView9"
-                android:layout_below="@+id/consumptionTextView"
-                android:layout_alignLeft="@+id/consumptionTextView"
-                android:layout_alignStart="@+id/consumptionTextView"
-                android:layout_marginTop="10dp"
-                android:textSize="11dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/insuranceTextView"
-                android:layout_below="@+id/textView9"
-                android:layout_alignLeft="@+id/textView9"
-                android:layout_alignStart="@+id/textView9"
-                android:textSize="15dp"
-                android:textColor="@color/navigationBarColor" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/type_of_fuel"
+                            android:id="@+id/textView10"
+                            style="@style/textTitleSmall" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/service_date"
-                android:id="@+id/textView11"
-                android:layout_below="@+id/insuranceTextView"
-                android:layout_alignLeft="@+id/insuranceTextView"
-                android:layout_alignStart="@+id/insuranceTextView"
-                android:layout_marginTop="10dp"
-                android:textSize="11dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/petrolTypeTextView"
+                            style="@style/textMedium"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/serviceTextView"
-                android:layout_below="@+id/textView11"
-                android:layout_alignLeft="@+id/textView11"
-                android:layout_alignStart="@+id/textView11"
-                android:textSize="15dp"
-                android:textColor="@color/navigationBarColor" />
+                    </LinearLayout>
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:scaleType="center"
-                android:src="@drawable/ic_editor_mode_edit"
-                android:layout_above="@+id/brandAndModelTextView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="20dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/consumption"
-                android:id="@+id/textView13"
-                android:textSize="11dp"
-                android:layout_alignTop="@+id/textView10"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="30dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avg_consumption"
+                            android:id="@+id/textView13"
+                            style="@style/textTitleSmall" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/petrolTypeTextView"
-                android:textSize="15dp"
-                android:layout_below="@+id/textView13"
-                android:layout_alignLeft="@+id/textView13"
-                android:layout_alignStart="@+id/textView13"
-                android:textColor="@color/navigationBarColor" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:id="@+id/consumptionTextView"
+                            android:lines="1"
+                            style="@style/textMedium"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-        </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/insurance_date"
+                    android:id="@+id/textView9"
+                    android:layout_marginTop="10dp"
+                    style="@style/textTitleSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/insuranceTextView"
+                    style="@style/textMedium"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/service_date"
+                    android:id="@+id/textView11"
+                    android:layout_marginTop="10dp"
+                    style="@style/textTitleSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/serviceTextView"
+                    style="@style/textMedium"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
-
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:scaleType="center"
+        android:clickable="true"
+        android:src="@drawable/ic_editor_mode_edit"
+        app:layout_anchor="@id/imageView"
+        app:layout_anchorGravity="bottom|right|end"/>
+</android.support.design.widget.CoordinatorLayout>

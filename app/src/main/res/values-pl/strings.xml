@@ -23,7 +23,8 @@
     <string name="brand_and_model">MARKA I MODEL</string>
     <string name="production_year">ROK PRODUKCJI</string>
     <string name="type_of_fuel">RODZAJ PALIWA</string>
-    <string name="consumption">ŚREDNIE SPALANIE</string>
+    <string name="avg_consumption">ŚREDNIE SPALANIE</string>
+    <string name="consumption">SPALANIE</string>
     <string name="insurance_date">UBEZPICZENIE WAŻNE DO</string>
     <string name="service_date">PRZEGLĄD WAŻNY DO</string>
 

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
 
@@ -10,6 +10,30 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="textTitleMedium">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">10dp</item>
+    </style>
+
+    <style name="textLarge">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textTitleSmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="textMedium">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

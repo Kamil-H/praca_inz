@@ -20,10 +20,11 @@
 
     <string name="edit_button">EDIT</string>
 
-    <string name="brand_and_model">BRAND I MODEL</string>
+    <string name="brand_and_model">BRAND AND MODEL</string>
     <string name="production_year">PRODUCTION</string>
     <string name="type_of_fuel">FUEL TYPE</string>
-    <string name="consumption">AVG CONSUMPTION</string>
+    <string name="avg_consumption">AVG CONSUMPTION</string>
+    <string name="consumption">CONSUMPTION</string>
     <string name="insurance_date">INSURANCE VALID FOR</string>
     <string name="service_date">SERVICE VALID FOR</string>
 

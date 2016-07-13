@@ -1,10 +1,11 @@
 package com.praca_inz.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.praca_inz.R;
@@ -23,16 +23,9 @@ import com.praca_inz.Utilities;
  * Created by KamilH on 2015-10-13.
  */
 public class CalcFragment extends Fragment {
-    SharedPreferences carInfoPreferences, petrolPreferences;
-    TextView resultTextView;
-    EditText consumptionEditText, distanceEditText, priceEdtiText;
-    RadioGroup radioGroup;
-    Button button;
-    View view;
-
-    public CalcFragment() {
-        // Required empty public constructor
-    }
+    private SharedPreferences carInfoPreferences, petrolPreferences;
+    private EditText consumptionEditText, distanceEditText, priceEditText;
+    private RadioGroup radioGroup;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,26 +34,18 @@ public class CalcFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_calc, container, false);
+        View view = inflater.inflate(R.layout.fragment_calc, container, false);
 
         carInfoPreferences = getActivity().getSharedPreferences("car_info_preferences", Context.MODE_PRIVATE);
         petrolPreferences = getActivity().getSharedPreferences("petrol_prices_preferences", Context.MODE_PRIVATE);
 
-        resultTextView = (TextView) view.findViewById(R.id.resultTextView);
         consumptionEditText = (EditText) view.findViewById(R.id.consumptionEditText);
 
         distanceEditText = (EditText) view.findViewById(R.id.distanceEditText);
-        priceEdtiText = (EditText) view.findViewById(R.id.priceEdtiText);
+        priceEditText = (EditText) view.findViewById(R.id.priceEditText);
         radioGroup = (RadioGroup) view.findViewById(R.id.radioSex);
 
-        TextInputLayout inputPrice = (TextInputLayout) view.findViewById(R.id.input_price);
-        inputPrice.setHint(getString(R.string.price_calc, "zł", "l"));
-        TextInputLayout inputDistance = (TextInputLayout) view.findViewById(R.id.input_distance);
-        inputDistance.setHint(getString(R.string.distance_calc, "km"));
-        TextInputLayout inputConsumption = (TextInputLayout) view.findViewById(R.id.input_consumption);
-        inputConsumption.setHint(getString(R.string.consumption_calc, "l"));
-
-        button = (Button) view.findViewById(R.id.button);
+        Button button = (Button) view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +57,7 @@ public class CalcFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int index = radioGroup.indexOfChild(getActivity().findViewById(radioGroup.getCheckedRadioButtonId()));
-                priceEdtiText.setText(String.valueOf(petrolPreferences.getFloat(String.valueOf(index), 0)));
+                priceEditText.setText(String.valueOf(petrolPreferences.getFloat(String.valueOf(index), 0)));
             }
         });
 
@@ -86,7 +71,7 @@ public class CalcFragment extends Fragment {
         ((RadioButton)radioGroup.getChildAt(carInfoPreferences.getInt("petrolType", 0))).setChecked(true);
 
         // nazwy mają taką samą kolejność jak w radioButton i petrol_types
-        priceEdtiText.setText(String.valueOf(petrolPreferences.getFloat(String.valueOf(carInfoPreferences.getInt("petrolType", 0)), 0)));
+        priceEditText.setText(String.valueOf(petrolPreferences.getFloat(String.valueOf(carInfoPreferences.getInt("petrolType", 0)), 0)));
     }
 
     public void count() {
@@ -110,11 +95,11 @@ public class CalcFragment extends Fragment {
         }
 
         // sprawdzenie czy zostało coś wpisane w pole ceny
-        if (TextUtils.isEmpty(priceEdtiText.getText().toString())){
-            priceEdtiText.setError(getString(R.string.price_empty));
+        if (TextUtils.isEmpty(priceEditText.getText().toString())){
+            priceEditText.setError(getString(R.string.price_empty));
         }
         else {
-            price = Float.valueOf(priceEdtiText.getText().toString());
+            price = Float.valueOf(priceEditText.getText().toString());
         }
 
         // sprawdzenie czy został wybrany rodzaj paliwa
@@ -128,7 +113,19 @@ public class CalcFragment extends Fragment {
         // wyliczenie i wyświetlenie kosztów podróży z wcześniejszym spawdzeniem czy zostały wypełnione wszystkie pola
         if (consumption != 0 && distance != 0 && index != -1) {
             float result = price * (distance / 100) * consumption;
-            resultTextView.setText(getString(R.string.cost_calculated, Utilities.roundOff(result), "zł"));
+            showCostDialog(result);
         }
+    }
+
+    private void showCostDialog(float cost) {
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.setMessage(getString(R.string.cost_calculated, Utilities.roundOff(cost), "zł"));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

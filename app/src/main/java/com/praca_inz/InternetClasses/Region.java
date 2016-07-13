@@ -1,6 +1,7 @@
 package com.praca_inz.InternetClasses;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.praca_inz.MainActivity;
 
@@ -32,7 +33,7 @@ public class Region extends AsyncTask<Double, Void, String> {
         String line = null;
         if(in != null){
             // przejście do 32 linii na stronie
-            for (int i = 0; i<26; i++){
+            for (int i = 0; i<32; i++){
                 if (in != null) {
                     try {
                         line = in.readLine();
@@ -42,6 +43,7 @@ public class Region extends AsyncTask<Double, Void, String> {
                 }
             }
             // uodębnienie tesktu znajdującego się na pozycji od 42 do 2 od końca
+            Log.i("Region", line);
             return line.substring(42, line.length()-2);
         }
         return null;

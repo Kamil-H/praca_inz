@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getPetrolPrices();
+        //getPetrolPrices();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
@@ -63,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);

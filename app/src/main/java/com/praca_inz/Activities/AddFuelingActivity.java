@@ -1,9 +1,8 @@
 package com.praca_inz.Activities;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -13,11 +12,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.praca_inz.Database.FuelingDB;
 import com.praca_inz.DateAndTime;
 import com.praca_inz.Fragments.DatePickerFragment;
-import com.praca_inz.Database.FuelingDB;
-import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.MainActivity;
+import com.praca_inz.Models.FuelingModel;
 import com.praca_inz.R;
 
 public class AddFuelingActivity extends AppCompatActivity {
@@ -42,13 +41,6 @@ public class AddFuelingActivity extends AppCompatActivity {
         costEditText = (EditText) findViewById(R.id.costEditText);
         litresEditText = (EditText) findViewById(R.id.litresEditText);
         priceEditText = (EditText) findViewById(R.id.priceEditText);
-
-        TextInputLayout inputPrice = (TextInputLayout) findViewById(R.id.input_price);
-        inputPrice.setHint(getString(R.string.price_calc, "zł", "l"));
-        TextInputLayout inputDistance = (TextInputLayout) findViewById(R.id.input_distance);
-        inputDistance.setHint(getString(R.string.distance_calc, "km"));
-        TextInputLayout inputConsumption = (TextInputLayout) findViewById(R.id.input_consumption);
-        inputConsumption.setHint(getString(R.string.consumption_calc, "l"));
 
         dateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,9 +118,9 @@ public class AddFuelingActivity extends AppCompatActivity {
 
     private void goBack(){
         Intent i = new Intent(this, MainActivity.class);
-        // przekazanie do głownego activity wartości 3 oznaczającej pozycję (zakładkę, która ma być zaznaczona)
         i.putExtra("position", 3);
         startActivity(i);
+        this.finish();
     }
 
     @Override
